@@ -77,7 +77,15 @@
     .num { color: var(--muted); }
     .stars::before { content: "★ "; color: var(--accent); }
     .when { color: var(--muted); font-size: .8rem; }
-    .err { color: var(--warn); padding: 1rem; border: 1px solid var(--warn); border-radius: 4px; margin-top: 1rem; }
+    .banner {
+      background: var(--line);
+      color: var(--fg);
+      padding: .65rem .85rem;
+      border-radius: 4px;
+      border-left: 3px solid var(--warn);
+      margin: 1rem 0;
+      font-size: .85rem;
+    }
     .skeleton td { color: var(--muted); font-style: italic; }
     .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
   </style>
@@ -88,9 +96,10 @@
     <p class="meta">
       <a href="https://github.com/adiled">@adiled</a> portfolio.
       Tiers and asks curated in <a href="../projects.json">projects.json</a> and <a href="../asks.json">asks.json</a>.
-      Live state from GitHub.
+      Live state from GitHub, cached locally.
       <span id="updated"></span>
     </p>
+    <div id="banner"></div>
   </header>
 
   <section>
@@ -129,12 +138,15 @@
   </section>
 
   <p class="footer">
-    No build step. Vanilla HTML and JS. Open <code>view-source:</code> if curious.
-    Rate-limited to 60 requests per hour per IP without auth, which is fine for personal browsing.
+    No build step. Vanilla HTML and JS. localStorage-cached GitHub responses with a 5-minute TTL.
+    Unauthenticated GitHub API allows 60 requests per hour per IP. The cache keeps that comfortable.
   </p>
 
   <script>
   (async () => {
+    const TTL = 5 * 60 * 1000; // 5 minutes
+    const CACHE_PREFIX = "dist-cache:v1:";
+
     const since = (iso) => {
       if (!iso) return "";
       const d = new Date(iso);
@@ -149,54 +161,75 @@
     const repoUrl = (r) => "https://github.com/" + r;
     const issueUrl = (r, n) => repoUrl(r) + "/issues/" + n;
 
-    const fail = (msg, e) => {
-      console.error(msg, e);
-      const div = document.createElement("div");
-      div.className = "err";
-      div.textContent = msg + (e ? ": " + e.message : "");
-      document.body.appendChild(div);
-    };
+    let rateLimitedUntil = null;
+
+    async function ghFetch(url) {
+      const key = CACHE_PREFIX + url;
+      let cached = null;
+      try { cached = JSON.parse(localStorage.getItem(key) || "null"); } catch (_) {}
+      if (cached && (Date.now() - cached.ts) < TTL) return cached.data;
+
+      try {
+        const res = await fetch(url, { headers: { "Accept": "application/vnd.github+json" } });
+        if (res.status === 403 || res.status === 429) {
+          const reset = parseInt(res.headers.get("x-ratelimit-reset") || "0", 10);
+          if (reset) rateLimitedUntil = new Date(reset * 1000);
+          if (cached) return cached.data; // stale-while-rate-limited
+          return null;
+        }
+        if (!res.ok) {
+          if (cached) return cached.data;
+          return null;
+        }
+        const data = await res.json();
+        try { localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data })); } catch (_) {}
+        return data;
+      } catch (e) {
+        if (cached) return cached.data;
+        return null;
+      }
+    }
+
+    function showBanner(msg) {
+      const el = document.getElementById("banner");
+      el.className = "banner";
+      el.textContent = msg;
+    }
 
     let projects, asks;
     try {
       [projects, asks] = await Promise.all([
-        fetch("../projects.json").then(r => r.ok ? r.json() : Promise.reject(new Error("projects.json " + r.status))),
-        fetch("../asks.json").then(r => r.ok ? r.json() : Promise.reject(new Error("asks.json " + r.status))),
+        fetch("../projects.json").then(r => r.json()),
+        fetch("../asks.json").then(r => r.json()),
       ]);
     } catch (e) {
-      fail("Could not load registries", e);
+      showBanner("Could not load projects.json or asks.json. Check the network tab.");
       return;
     }
 
     const repoNames = projects.projects.map(p => p.repo);
-    const askKeys = new Set(asks.tracked.map(a => a.repo + "#" + a.number));
+    const repoData = await Promise.all(repoNames.map(r => ghFetch("https://api.github.com/repos/" + r)));
+    const issueData = await Promise.all(asks.tracked.map(a =>
+      ghFetch("https://api.github.com/repos/" + a.repo + "/issues/" + a.number)
+    ));
 
-    // Live data: per-repo info and per-issue info. Use unauthenticated GitHub REST.
-    const repoFetches = repoNames.map(r =>
-      fetch("https://api.github.com/repos/" + r)
-        .then(res => res.ok ? res.json() : null)
-        .catch(() => null)
-    );
-    const issueFetches = asks.tracked.map(a =>
-      fetch("https://api.github.com/repos/" + a.repo + "/issues/" + a.number)
-        .then(res => res.ok ? res.json() : null)
-        .catch(() => null)
-    );
-
-    const [repoData, issueData] = await Promise.all([
-      Promise.all(repoFetches),
-      Promise.all(issueFetches),
-    ]);
+    if (rateLimitedUntil) {
+      const mins = Math.max(1, Math.ceil((rateLimitedUntil - Date.now()) / 60000));
+      showBanner(
+        "GitHub rate limit hit (60/hr unauth, per-IP). Resets at " +
+        rateLimitedUntil.toLocaleTimeString() +
+        " (~" + mins + " min). Showing cached data where available."
+      );
+    }
 
     const repoByName = {};
     repoData.forEach((d, i) => { if (d) repoByName[repoNames[i]] = d; });
 
-    // Render projects
     const projectsBody = document.querySelector("#projects tbody");
     projectsBody.innerHTML = projects.projects.map(p => {
       const live = repoByName[p.repo] || {};
       const lang = live.language || "—";
-      const stars = (live.stargazers_count ?? "—");
+      const stars = (live.stargazers_count != null ? live.stargazers_count : "—");
       const pushed = live.pushed_at ? since(live.pushed_at) : "—";
       return `
         <tr>
@@ -210,11 +243,10 @@
         </tr>`;
     }).join("");
 
-    // Render asks
     const asksBody = document.querySelector("#asks tbody");
     asksBody.innerHTML = asks.tracked.map((a, i) => {
       const live = issueData[i] || {};
-      const title = live.title || "(could not load)";
+      const title = live.title || (a.state === "closed-resolved" ? "(closed, see asks.json note)" : "(could not load)");
       const state = live.state || (a.state === "closed-resolved" ? "closed" : "?");
       const stateClass = state === "open" ? "state-open" : "state-closed";
       return `
@@ -228,7 +260,7 @@
         </tr>`;
     }).join("");
 
-    document.getElementById("updated").textContent = "as of " + new Date().toLocaleString();
+    document.getElementById("updated").textContent = "rendered " + new Date().toLocaleString();
   })();
   </script>
 </body>
