@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>distribution / @adiled</title>
+  <meta name="color-scheme" content="dark light">
+  <style>
+    :root {
+      --bg: #0e0e10;
+      --fg: #e8e6e3;
+      --muted: #8a8682;
+      --accent: #d4a574;
+      --line: #2a2a2c;
+      --warn: #c97a4a;
+      --ok: #6c8c5d;
+      --t1: #c9b48a;
+      --t2: #8da77b;
+      --t3: #b08a5a;
+      --t4: #6a6a6a;
+      --t5: #4a4a4a;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #faf8f5;
+        --fg: #1a1a1a;
+        --muted: #6a6a6a;
+        --accent: #8a5a2a;
+        --line: #d8d4ce;
+        --t1: #6a4a1a;
+        --t2: #4a6a3a;
+        --t3: #8a5a2a;
+        --t4: #8a8a8a;
+        --t5: #aaaaaa;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 2rem 1.25rem 4rem;
+      max-width: 1100px;
+      margin-inline: auto;
+    }
+    code, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+    h1 { font-size: 1.5rem; margin: 0 0 .25rem; font-weight: 500; letter-spacing: -.01em; }
+    h2 { font-size: 1.05rem; margin: 2.5rem 0 .75rem; font-weight: 600; letter-spacing: -.005em; }
+    .meta { color: var(--muted); font-size: .85rem; margin: 0 0 .5rem; }
+    .meta a { color: var(--muted); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    th, td {
+      text-align: left;
+      padding: .5rem .65rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th { font-weight: 500; color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+    td.repo { white-space: nowrap; }
+    td.note { color: var(--muted); font-size: .85rem; }
+    .tier { display: inline-block; padding: .1rem .4rem; border-radius: 3px; font-size: .7rem; font-weight: 600; letter-spacing: .03em; color: var(--bg); }
+    .tier-T1 { background: var(--t1); }
+    .tier-T2 { background: var(--t2); }
+    .tier-T3 { background: var(--t3); }
+    .tier-T4 { background: var(--t4); }
+    .tier-T5 { background: var(--t5); }
+    .pri { display: inline-block; padding: .1rem .35rem; border-radius: 3px; font-size: .7rem; font-weight: 600; }
+    .pri-P0 { background: var(--warn); color: var(--bg); }
+    .pri-P1 { background: var(--accent); color: var(--bg); }
+    .pri-P2 { background: var(--muted); color: var(--bg); }
+    .state { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+    .state-open::before { content: "●"; color: var(--ok); margin-right: .25rem; }
+    .state-closed::before { content: "●"; color: var(--muted); margin-right: .25rem; }
+    .num { color: var(--muted); }
+    .stars::before { content: "★ "; color: var(--accent); }
+    .when { color: var(--muted); font-size: .8rem; }
+    .err { color: var(--warn); padding: 1rem; border: 1px solid var(--warn); border-radius: 4px; margin-top: 1rem; }
+    .skeleton td { color: var(--muted); font-style: italic; }
+    .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>distribution</h1>
+    <p class="meta">
+      <a href="https://github.com/adiled">@adiled</a> portfolio.
+      Tiers and asks curated in <a href="../projects.json">projects.json</a> and <a href="../asks.json">asks.json</a>.
+      Live state from GitHub.
+      <span id="updated"></span>
+    </p>
+  </header>
+
+  <section>
+    <h2>Projects</h2>
+    <table id="projects">
+      <thead>
+        <tr>
+          <th>Repo</th>
+          <th>Tier</th>
+          <th>Lang</th>
+          <th>Stars</th>
+          <th>Last push</th>
+          <th>Note</th>
+          <th>Dossier</th>
+        </tr>
+      </thead>
+      <tbody><tr class="skeleton"><td colspan="7">loading...</td></tr></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Asks</h2>
+    <table id="asks">
+      <thead>
+        <tr>
+          <th>Repo</th>
+          <th>#</th>
+          <th>Title</th>
+          <th>State</th>
+          <th>Pri</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody><tr class="skeleton"><td colspan="6">loading...</td></tr></tbody>
+    </table>
+  </section>
+
+  <p class="footer">
+    No build step. Vanilla HTML and JS. Open <code>view-source:</code> if curious.
+    Rate-limited to 60 requests per hour per IP without auth, which is fine for personal browsing.
+  </p>
+
+  <script>
+  (async () => {
+    const since = (iso) => {
+      if (!iso) return "";
+      const d = new Date(iso);
+      const days = Math.round((Date.now() - d) / 86400000);
+      if (days === 0) return "today";
+      if (days === 1) return "1 day ago";
+      if (days < 30) return days + " days ago";
+      if (days < 365) return Math.round(days / 30) + " mo ago";
+      return Math.round(days / 365) + " yr ago";
+    };
+    const escape = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+    const repoUrl = (r) => "https://github.com/" + r;
+    const issueUrl = (r, n) => repoUrl(r) + "/issues/" + n;
+
+    const fail = (msg, e) => {
+      console.error(msg, e);
+      const div = document.createElement("div");
+      div.className = "err";
+      div.textContent = msg + (e ? ": " + e.message : "");
+      document.body.appendChild(div);
+    };
+
+    let projects, asks;
+    try {
+      [projects, asks] = await Promise.all([
+        fetch("../projects.json").then(r => r.ok ? r.json() : Promise.reject(new Error("projects.json " + r.status))),
+        fetch("../asks.json").then(r => r.ok ? r.json() : Promise.reject(new Error("asks.json " + r.status))),
+      ]);
+    } catch (e) {
+      fail("Could not load registries", e);
+      return;
+    }
+
+    const repoNames = projects.projects.map(p => p.repo);
+    const askKeys = new Set(asks.tracked.map(a => a.repo + "#" + a.number));
+
+    // Live data: per-repo info and per-issue info. Use unauthenticated GitHub REST.
+    const repoFetches = repoNames.map(r =>
+      fetch("https://api.github.com/repos/" + r)
+        .then(res => res.ok ? res.json() : null)
+        .catch(() => null)
+    );
+    const issueFetches = asks.tracked.map(a =>
+      fetch("https://api.github.com/repos/" + a.repo + "/issues/" + a.number)
+        .then(res => res.ok ? res.json() : null)
+        .catch(() => null)
+    );
+
+    const [repoData, issueData] = await Promise.all([
+      Promise.all(repoFetches),
+      Promise.all(issueFetches),
+    ]);
+
+    const repoByName = {};
+    repoData.forEach((d, i) => { if (d) repoByName[repoNames[i]] = d; });
+
+    // Render projects
+    const projectsBody = document.querySelector("#projects tbody");
+    projectsBody.innerHTML = projects.projects.map(p => {
+      const live = repoByName[p.repo] || {};
+      const lang = live.language || "—";
+      const stars = (live.stargazers_count ?? "—");
+      const pushed = live.pushed_at ? since(live.pushed_at) : "—";
+      return `
+        <tr>
+          <td class="repo mono"><a href="${repoUrl(p.repo)}">${escape(p.repo)}</a></td>
+          <td><span class="tier tier-${p.tier}">${p.tier}</span></td>
+          <td>${escape(lang)}</td>
+          <td class="stars">${escape(String(stars))}</td>
+          <td class="when">${escape(pushed)}</td>
+          <td class="note">${escape(p.note || "")}</td>
+          <td><a href="https://github.com/adiled/distribution/blob/main/${escape(p.dossier)}">md</a></td>
+        </tr>`;
+    }).join("");
+
+    // Render asks
+    const asksBody = document.querySelector("#asks tbody");
+    asksBody.innerHTML = asks.tracked.map((a, i) => {
+      const live = issueData[i] || {};
+      const title = live.title || "(could not load)";
+      const state = live.state || (a.state === "closed-resolved" ? "closed" : "?");
+      const stateClass = state === "open" ? "state-open" : "state-closed";
+      return `
+        <tr>
+          <td class="repo mono"><a href="${repoUrl(a.repo)}">${escape(a.repo)}</a></td>
+          <td class="num"><a href="${issueUrl(a.repo, a.number)}">#${a.number}</a></td>
+          <td>${escape(title)}</td>
+          <td><span class="state ${stateClass}">${escape(state)}</span></td>
+          <td><span class="pri pri-${a.priority}">${a.priority}</span></td>
+          <td class="note">${escape(a.note || "")}</td>
+        </tr>`;
+    }).join("");
+
+    document.getElementById("updated").textContent = "as of " + new Date().toLocaleString();
+  })();
+  </script>
+</body>
+</html>

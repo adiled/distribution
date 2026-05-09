@@ -1,0 +1,67 @@
+{
+  "$schema": "./projects.schema.json",
+  "version": 1,
+  "description": "Curated registry of @adiled's OSS projects under distribution. Mirrors the shape of asks.json. Live data (stars, last push, description) is fetched from GitHub on demand, not duplicated here.",
+  "projects": [
+    {
+      "repo": "adiled/ohlc-resample",
+      "tier": "T1",
+      "dossier": "projects/ohlc-resample.md",
+      "note": "Anchor. Mature, npm-published, Changesets release flow live."
+    },
+    {
+      "repo": "adiled/opencode-dir",
+      "tier": "T2",
+      "dossier": "projects/opencode-dir.md",
+      "note": "Live. Working install script, audience traction. Lower-stakes T2 to lead with."
+    },
+    {
+      "repo": "adiled/clwnd",
+      "tier": "T2",
+      "dossier": "projects/clwnd.md",
+      "note": "Live. Working CLI plus install script plus demo gif. Pre-launch polish ahead."
+    },
+    {
+      "repo": "adiled/ccft",
+      "tier": "T2",
+      "dossier": "projects/ccft.md",
+      "note": "Live. MITM proxy plus token ledger plus TUI. README cut is the top blocker."
+    },
+    {
+      "repo": "adiled/rishta-lang",
+      "tier": "T3",
+      "dossier": "projects/rishta-lang.md",
+      "note": "Pre-launch. Kinship-typed lineage language. Renamed from bhai-lang."
+    },
+    {
+      "repo": "adiled/iksir",
+      "tier": "T3",
+      "dossier": "projects/iksir.md",
+      "note": "Pre-launch. Single-flame opencode workflow tool. Needs operational tier in README."
+    },
+    {
+      "repo": "adiled/orch",
+      "tier": "T3",
+      "dossier": "projects/orch.md",
+      "note": "Pre-launch. Orchfile parser and spec library. Pairs with orchd."
+    },
+    {
+      "repo": "adiled/orchd",
+      "tier": "T3",
+      "dossier": "projects/orch.md",
+      "note": "Pre-launch. Execution engine for the Orch spec. Linux-only until launchd platform lands."
+    },
+    {
+      "repo": "adiled/clwnd-playground",
+      "tier": "T4",
+      "dossier": "projects/clwnd-playground.md",
+      "note": "Companion. Demonstration repo for clwnd, not promoted standalone."
+    },
+    {
+      "repo": "adiled/khowarpedia",
+      "tier": "T5",
+      "dossier": "projects/khowarpedia.md",
+      "note": "Cultural. Khowar-English dictionary, separate orbit from the agentic-systems thesis."
+    }
+  ]
+}

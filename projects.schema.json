@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adiled/distribution/blob/main/projects.schema.json",
+  "title": "Distribution Projects Registry",
+  "description": "Curated registry of OSS projects under distribution for the @adiled portfolio. Source of truth for which projects are tracked and at what tier. Live data (stars, push date, description) is fetched from GitHub on demand and is not duplicated in the registry.",
+  "type": "object",
+  "required": ["version", "projects"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "URI of this schema. Optional pointer for editor tooling."
+    },
+    "version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Schema version. Bump only on a structural change to this file's shape."
+    },
+    "description": {
+      "type": "string",
+      "description": "Free-text purpose statement for the registry."
+    },
+    "projects": {
+      "type": "array",
+      "description": "Array of curated projects. Each entry maps to one GitHub repo.",
+      "items": { "$ref": "#/definitions/project" }
+    }
+  },
+  "definitions": {
+    "project": {
+      "type": "object",
+      "required": ["repo", "tier", "dossier"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "description": "GitHub repo in owner/name form. Example: adiled/ohlc-resample."
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["T1", "T2", "T3", "T4", "T5"],
+          "description": "Tier per policy.md §1. T1 anchor, T2 live, T3 pre-launch, T4 companion, T5 cultural or dormant."
+        },
+        "dossier": {
+          "type": "string",
+          "description": "Relative path to the project's distribution dossier markdown file."
+        },
+        "note": {
+          "type": "string",
+          "description": "One-line context to make the registry readable without opening the dossier. Optional but recommended."
+        }
+      }
+    }
+  }
+}
