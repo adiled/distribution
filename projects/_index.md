@@ -8,7 +8,7 @@ Last refreshed: 2026-05-09
 |---|---|---|---|---|---|---|
 | [`ohlc-resample`](https://github.com/adiled/ohlc-resample) | T1 | TS | 26 | 2026-05-09 | Maintained. npm-published. Changesets release flow live. | [→](./ohlc-resample.md) |
 | [`opencode-dir`](https://github.com/adiled/opencode-dir) | T2 | TS | 13 | 2026-05-04 | Working install script. Audience traction (13⭐ on niche plugin). Ready for first coordinated push. | [→](./opencode-dir.md) |
-| [`clwnd`](https://github.com/adiled/clwnd) | T2 | TS | 9 | 2026-05-05 | Working CLI, install script, demo gif. Pre-launch. Needs landing page and Show-HN-grade README polish. | [→](./clwnd.md) |
+| [`clwnd`](https://github.com/adiled/clwnd) | T2 | TS | 9 | 2026-05-05 | OpenCode sidecar that delegates model calls to Claude Code CLI and replaces the file/edit toolset with AST-grounded tools, JSONL grafting, and a context-loss watcher. v0.24.19 shipped. | [→](./clwnd.md) |
 | [`ccft`](https://github.com/adiled/ccft) | T2 | Rust | 0 | 2026-05-08 | Claude Code companion that scores bot/driver vibe over time. v1.5.0 release-ready. crates.io and Homebrew remaining. | [→](./ccft.md) |
 | [`rishta-lang`](https://github.com/adiled/rishta-lang) | T3 | Python | 0 | 2026-04-15 | Kinship-typed lineage language. Renamed from `bhai-lang`. Now blocked on license only. | [→](./rishta-lang.md) |
 | [`iksir`](https://github.com/adiled/iksir) | T3 | TS (Deno) | 0 | 2026-03-30 | Alchemical opencode workflow tool. README is pure mythic register, needs an operational tier added. | [→](./iksir.md) |

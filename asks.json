@@ -27,7 +27,8 @@
       "repo": "adiled/clwnd",
       "number": 32,
       "priority": "P0",
-      "note": "Add LICENSE (MIT)."
+      "note": "Closed as stale. LICENSE has been MIT since v0.0.0; the original ask was filed from a misread of state.",
+      "state": "closed-resolved"
     },
     {
       "repo": "adiled/clwnd",
@@ -39,7 +40,8 @@
       "repo": "adiled/clwnd",
       "number": 34,
       "priority": "P0",
-      "note": "Tag v0.1.0 release with handwritten notes."
+      "note": "Closed as stale. 20 tagged releases shipped, latest v0.24.19 (2026-05-05); the original ask was filed from a misread of state.",
+      "state": "closed-resolved"
     },
     {
       "repo": "adiled/clwnd",
