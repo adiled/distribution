@@ -59,7 +59,8 @@
       "repo": "adiled/opencode-dir",
       "number": 3,
       "priority": "P0",
-      "note": "Tag v0.1.0 release with notes."
+      "note": "Closed as stale. Twenty tagged releases shipped (v1.0.0 through v1.0.8); the original ask was filed from a misread of state.",
+      "state": "closed-resolved"
     },
     {
       "repo": "adiled/opencode-dir",
@@ -71,7 +72,14 @@
       "repo": "adiled/opencode-dir",
       "number": 5,
       "priority": "P1",
-      "note": "Set up package.json repository field so GitHub Packages sidebar appears on npm publish."
+      "note": "Closed as stale. package.json repository field is already correctly set; the original ask was filed from a misread of state.",
+      "state": "closed-resolved"
+    },
+    {
+      "repo": "adiled/opencode-dir",
+      "number": 6,
+      "priority": "P0",
+      "note": "Fix and republish. v1.0.6 to v1.0.8 ship a syntax error in index.ts that breaks the plugin on opencode startup. CI gate plus fresh-install verification needed. Dominant pre-launch blocker."
     },
     {
       "repo": "adiled/ccft",
