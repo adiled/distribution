@@ -58,7 +58,7 @@
     section:first-of-type h2 { margin-top: 0; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; table-layout: fixed; }
     th, td {
       text-align: left;
       padding: .5rem .65rem;
@@ -66,8 +66,14 @@
       vertical-align: top;
     }
     th { font-weight: 500; color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
-    td.repo { white-space: nowrap; }
-    td.note { color: var(--muted); font-size: .85rem; }
+    td.repo {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    td.note { color: var(--muted); font-size: .85rem; word-wrap: break-word; }
+    /* shared first-column width across both tables so they align visually */
+    #projects col:first-child, #asks col:first-child { width: 14em; }
     .tier { display: inline-block; padding: .1rem .4rem; border-radius: 3px; font-size: .7rem; font-weight: 600; letter-spacing: .03em; color: var(--bg); }
     .tier-T1 { background: var(--t1); }
     .tier-T2 { background: var(--t2); }
@@ -96,6 +102,9 @@
   <section>
     <h2>Projects</h2>
     <table id="projects">
+      <colgroup>
+        <col><!-- Repo: 14em via CSS --><col style="width:4em"><col><!-- Note: rest --><col style="width:4em">
+      </colgroup>
       <thead>
         <tr>
           <th>Repo</th>
@@ -111,6 +120,9 @@
   <section>
     <h2>Asks</h2>
     <table id="asks">
+      <colgroup>
+        <col><!-- Repo: 14em via CSS --><col style="width:3.5em"><col style="width:3em"><col style="width:3em"><col><!-- Note: rest --><col style="width:4em">
+      </colgroup>
       <thead>
         <tr>
           <th>Repo</th>
