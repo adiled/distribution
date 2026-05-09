@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/adiled/distribution/blob/main/asks.schema.json",
+  "title": "Distribution Asks Registry",
+  "description": "Curated registry of GitHub issues tracked as distribution asks for the @adiled portfolio. Source of truth for which issues are tracked. Live state (open/closed, title, comments) is fetched from GitHub on demand and is not duplicated in the registry.",
+  "type": "object",
+  "required": ["version", "tracked"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "URI of this schema. Optional pointer for editor tooling."
+    },
+    "version": {
+      "type": "integer",
+      "const": 1,
+      "description": "Schema version. Bump only on a structural change to this file's shape."
+    },
+    "description": {
+      "type": "string",
+      "description": "Free-text purpose statement for the registry. Useful for LLM agents loading the file cold."
+    },
+    "underTheTablePointer": {
+      "type": "string",
+      "description": "Relative path to the gitignored under-the-table queue. Items not appropriate for public tracking live there."
+    },
+    "tracked": {
+      "type": "array",
+      "description": "Array of curated asks. Each entry maps to one GitHub issue.",
+      "items": { "$ref": "#/definitions/ask" }
+    }
+  },
+  "definitions": {
+    "ask": {
+      "type": "object",
+      "required": ["repo", "number", "priority"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "description": "GitHub repo in owner/name form. Example: adiled/clwnd."
+        },
+        "number": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Issue number on the named repo. Live state for this issue is fetched from GitHub, not stored here."
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["P0", "P1", "P2"],
+          "description": "P0 blocks a launch. P1 blocks a specific channel or surface. P2 is quality-of-life."
+        },
+        "note": {
+          "type": "string",
+          "description": "One-line context to make the registry readable without opening every issue. Optional but recommended."
+        },
+        "state": {
+          "type": "string",
+          "enum": ["open", "closed-resolved", "closed-superseded", "deferred"],
+          "description": "Optional curation state. Live open/closed status comes from GitHub. This field carries the curation story when it diverges (e.g. closed but the resolution is worth keeping in the registry, or deliberately deferred)."
+        }
+      }
+    }
+  }
+}

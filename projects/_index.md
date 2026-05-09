@@ -34,4 +34,4 @@ If you're picking this up cold:
 2. [`../policy.md`](../policy.md). The constraints.
 3. This file (`_index.md`). What's in flight.
 4. The dossier of whichever project is the current focus.
-5. [`../ASKS.md`](../ASKS.md). What's blocked on the human.
+5. [`../asks.json`](../asks.json). What's blocked on the human (registry of curated GitHub issues, schema in [`../asks.schema.json`](../asks.schema.json)).

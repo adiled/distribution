@@ -1,4 +1,5 @@
 {
+  "$schema": "./asks.schema.json",
   "version": 1,
   "description": "Registry of GitHub issues curated as distribution asks for the @adiled portfolio. Source of truth for which issues are tracked. Live status (open/closed, title, comments) is fetched from GitHub on demand, not duplicated here.",
   "underTheTablePointer": "inbox/ASKS.md",

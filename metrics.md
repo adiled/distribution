@@ -96,7 +96,7 @@ Not measured. The work happens because it should, not because numbers ask for it
 
 ## Portfolio metrics (rolled up across all tiers)
 
-Tracked monthly. These are the metrics for the **distribution chief** role, not for any individual project.
+These are the metrics for the **distribution chief** role, not for any individual project. Read them when a portfolio-level question comes up (a tier reassessment, a launch retro, a quarterly check-in if and when one happens).
 
 | Metric | What it tells us | Acceptable range |
 |---|---|---|
@@ -105,7 +105,7 @@ Tracked monthly. These are the metrics for the **distribution chief** role, not 
 | **Sum of new external contributors across portfolio** | Audience-formation pace | Higher is healthier. A quarter with zero is a flag. |
 | **Launches executed per quarter** | Cadence health | 1 to 3 per quarter. Zero means not shipping. Above 3 means scattered. |
 | **Distance from policy on each launch** (post-launch self-audit) | Policy coherence | Audited per launch in `projects/<name>.md`. Drift gets fixed in policy.md. |
-| **Items aging in `ASKS.md` > 14 days** | Bottleneck health | Should trend toward zero. |
+| **Open distribution asks** (across the asks.json registry, by priority) | Bottleneck health | P0 count should trend toward zero between launches. |
 
 ---
 
@@ -116,19 +116,6 @@ Tracked monthly. These are the metrics for the **distribution chief** role, not 
 - **Hours spent.** Effort is not value. We measure outcomes, not motion.
 - **Email list size for `adils.me`.** Useful long-term, but the portfolio's distribution doesn't yet hinge on it. Re-evaluate when there's a launch where email is the primary channel.
 - **Per-tweet engagement.** Posts are means. The only relevant metric is whether they produced installers.
-
----
-
-## Reporting cadence
-
-| Cadence | What | Where |
-|---|---|---|
-| **Weekly (Monday)** | Status check on T2 projects, plus ASKS.md cleanup | Update each `projects/<name>.md` "Status" section, plus `_index.md` |
-| **Per-launch** | Same-day launch log, 7-day retro, 30-day retro. All in the project's dossier | `projects/<name>.md` under "Launches" |
-| **Monthly (last Friday)** | Portfolio rollup against the table above | New section appended to `metrics.md` or a separate `metrics-log.md` |
-| **Quarterly** | Tier reassessment and policy revision | Edit `policy.md` §1, update `_index.md` |
-
-A metric that isn't reviewed on schedule should be deleted, not let to rot. Better to track few things consistently than many things sporadically.
 
 ---
 
