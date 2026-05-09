@@ -2,15 +2,15 @@
 
 Operational source of truth for distributing `adiled`'s open-source projects. The role this repo enacts:
 
-> **Distribution Chief** — analyze the active project portfolio, formulate a distribution policy, map every viable channel to the projects that suit it, define the metrics that say whether a launch worked, and surface the human-only asks (account creation, OAuth grants, posting) that block execution.
+> **Distribution Chief.** Analyze the active project portfolio, formulate a distribution policy, map every viable channel to the projects that suit it, define the metrics that say whether a launch worked, and surface the human-only asks (account creation, OAuth grants, posting) that block execution.
 
-This repo is not a launcher and not a CRM. It is a written mind: every public-facing decision about what gets shipped, where, when, in what voice, against which target — gets recorded here. Commits are the changelog of distribution thinking.
+This repo is not a launcher and not a CRM. It is a written mind: every public-facing decision about what gets shipped, where, when, in what voice, against which target gets recorded here. Commits are the changelog of distribution thinking.
 
 ## Layout
 
 ```
 distribution/
-├── README.md             # this file — charter and how to use the repo
+├── README.md             # this file. charter and how to use the repo
 ├── policy.md             # the operating policy (tiering, voice, license, naming)
 ├── channels.md           # every distribution channel under consideration, with effort/yield
 ├── metrics.md            # what we count and what counts as winning, per tier
@@ -23,16 +23,16 @@ distribution/
 ## How to use it
 
 - **`projects/_index.md`** is the wide view. Open this first to see what's in play.
-- **`policy.md`** is the constraint surface. Read it before drafting a launch — it tells you what to and what not to do.
+- **`policy.md`** is the constraint surface. Read it before drafting a launch. It tells you what to and what not to do.
 - **`channels.md`** is the catalog. Each channel has a one-line pitch, a per-project fit note, and an effort tier so you don't accidentally schedule a launch heavier than the project warrants.
-- **`metrics.md`** is the scoreboard. Numbers that mean something + numbers that don't.
+- **`metrics.md`** is the scoreboard. Numbers that mean something, plus numbers that don't.
 - **`ASKS.md`** is the bottleneck list. If something stalls because Claude can't sign into a service, it goes here, prioritized.
 
 ## Cadence
 
-- **Weekly:** review `projects/_index.md`, update tier and status; clear or escalate items in `ASKS.md`.
-- **On every release:** the originating project's dossier gets a "shipped" entry with the channels that fired and what they returned.
-- **Quarterly:** revisit `policy.md` and `metrics.md`. The portfolio changes; the policy must too.
+- **Weekly.** Review `projects/_index.md`, update tier and status. Clear or escalate items in `ASKS.md`.
+- **On every release.** The originating project's dossier gets a "shipped" entry with the channels that fired and what they returned.
+- **Quarterly.** Revisit `policy.md` and `metrics.md`. The portfolio changes, and the policy must too.
 
 ## Operating principle
 
