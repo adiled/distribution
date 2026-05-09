@@ -33,7 +33,3 @@ distribution/
 - **Weekly.** Review `projects/_index.md`, update tier and status. Clear or escalate items in `ASKS.md`.
 - **On every release.** The originating project's dossier gets a "shipped" entry with the channels that fired and what they returned.
 - **Quarterly.** Revisit `policy.md` and `metrics.md`. The portfolio changes, and the policy must too.
-
-## Operating principle
-
-Distribution is an asymmetric game: one well-aimed launch beats ten quiet releases. This repo exists so the aim is deliberate.
