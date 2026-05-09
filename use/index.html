@@ -13,7 +13,9 @@
       --accent: #d4a574;
       --line: #2a2a2c;
       --warn: #c97a4a;
-      --ok: #6c8c5d;
+      --blue: #5a8ec9;
+      --red: #c95a5a;
+      --green: #6c8c5d;
       --t1: #c9b48a;
       --t2: #8da77b;
       --t3: #b08a5a;
@@ -27,6 +29,9 @@
         --muted: #6a6a6a;
         --accent: #8a5a2a;
         --line: #d8d4ce;
+        --blue: #2a5a8a;
+        --red: #a23a3a;
+        --green: #4a6a3a;
         --t1: #6a4a1a;
         --t2: #4a6a3a;
         --t3: #8a5a2a;
@@ -71,14 +76,21 @@
     .pri-P0 { background: var(--warn); color: var(--bg); }
     .pri-P1 { background: var(--accent); color: var(--bg); }
     .pri-P2 { background: var(--muted); color: var(--bg); }
-    .state { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-    .state-open::before { content: "●"; color: var(--ok); margin-right: .25rem; }
-    .state-closed::before { content: "●"; color: var(--muted); margin-right: .25rem; }
+    .s {
+      display: inline-block;
+      min-width: 1.4em;
+      padding: 0 .35em;
+      text-align: center;
+      border-radius: 3px;
+      font: 700 .75rem/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      color: #fff;
+    }
+    .s-O { background: var(--blue); }
+    .s-C { background: var(--red); }
+    .s-R { background: var(--green); }
+    .s-q { background: var(--muted); }
     .num { color: var(--muted); }
-    .stars::before { content: "★ "; color: var(--accent); }
-    .when { color: var(--muted); font-size: .8rem; }
     .skeleton td { color: var(--muted); font-style: italic; }
-    .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
   </style>
 </head>
 <body>
@@ -86,8 +98,7 @@
     <h1>distribution</h1>
     <p class="meta">
       <a href="https://github.com/adiled">@adiled</a> portfolio.
-      Static page reading <a href="../projects.json">projects.json</a> and <a href="../asks.json">asks.json</a>, calling GitHub's public API directly from the browser for live state.
-      <span id="updated"></span>
+      Stencil over <a href="../projects.json">projects.json</a> and <a href="../asks.json">asks.json</a>. Click any row to reach live state on GitHub.
     </p>
   </header>
 
@@ -98,14 +109,11 @@
         <tr>
           <th>Repo</th>
           <th>Tier</th>
-          <th>Lang</th>
-          <th>Stars</th>
-          <th>Last push</th>
           <th>Note</th>
           <th>Dossier</th>
         </tr>
       </thead>
-      <tbody><tr class="skeleton"><td colspan="7">loading...</td></tr></tbody>
+      <tbody><tr class="skeleton"><td colspan="4">loading...</td></tr></tbody>
     </table>
   </section>
 
@@ -116,113 +124,54 @@
         <tr>
           <th>Repo</th>
           <th>#</th>
-          <th>Title</th>
           <th>State</th>
           <th>Pri</th>
           <th>Note</th>
         </tr>
       </thead>
-      <tbody><tr class="skeleton"><td colspan="6">loading...</td></tr></tbody>
+      <tbody><tr class="skeleton"><td colspan="5">loading...</td></tr></tbody>
     </table>
   </section>
 
-  <p class="footer">
-    No build step, no servers, no middleware. The browser fetches the registry JSON from this site and the live state from <code>api.github.com</code> directly.
-  </p>
-
   <script>
   (async () => {
-    const TTL = 5 * 60 * 1000;
-    const KEY = "dist-cache:v1:";
-
     const escape = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
     const repoUrl = (r) => "https://github.com/" + r;
     const issueUrl = (r, n) => repoUrl(r) + "/issues/" + n;
     const dossierUrl = (path) => "https://github.com/adiled/distribution/blob/main/" + path;
-    const since = (iso) => {
-      if (!iso) return "";
-      const d = new Date(iso);
-      const days = Math.round((Date.now() - d) / 86400000);
-      if (days === 0) return "today";
-      if (days === 1) return "1 day ago";
-      if (days < 30) return days + " days ago";
-      if (days < 365) return Math.round(days / 30) + " mo ago";
-      return Math.round(days / 365) + " yr ago";
-    };
 
-    async function gh(url) {
-      const k = KEY + url;
-      let cached = null;
-      try { cached = JSON.parse(localStorage.getItem(k) || "null"); } catch (_) {}
-      if (cached && (Date.now() - cached.ts) < TTL) return cached.data;
-      try {
-        const res = await fetch(url);
-        if (!res.ok) return cached ? cached.data : null;
-        const data = await res.json();
-        try { localStorage.setItem(k, JSON.stringify({ ts: Date.now(), data })); } catch (_) {}
-        return data;
-      } catch (_) {
-        return cached ? cached.data : null;
-      }
-    }
+    const askGlyph = (a) => {
+      const s = a.state || "open";
+      if (s === "open") return "O";
+      if (s === "closed-resolved") return "R";
+      if (s.startsWith("closed")) return "C";
+      return "q";
+    };
 
     const [projects, asks] = await Promise.all([
       fetch("../projects.json").then(r => r.json()),
       fetch("../asks.json").then(r => r.json()),
     ]);
 
-    // Bulk both sides: one /users/adiled/repos call for project metadata,
-    // one search call with all repo: filters OR'd for issue state.
-    const repoNames = [...new Set(projects.projects.map(p => p.repo))];
-    const askRepos = [...new Set(asks.tracked.map(a => a.repo))];
-    const searchQuery = "is:issue " + askRepos.map(r => "repo:" + r).join(" ");
-    const searchUrl = "https://api.github.com/search/issues?q=" + encodeURIComponent(searchQuery) + "&per_page=100";
-
-    const [allRepos, issuesResp] = await Promise.all([
-      gh("https://api.github.com/users/adiled/repos?per_page=100"),
-      gh(searchUrl),
-    ]);
-
-    const repoBy = {};
-    for (const r of (allRepos || [])) repoBy[r.full_name] = r;
-
-    const issueBy = {};
-    for (const it of (issuesResp?.items || [])) {
-      const repo = String(it.repository_url || "").replace("https://api.github.com/repos/", "");
-      issueBy[repo + "#" + it.number] = it;
-    }
-
-    document.querySelector("#projects tbody").innerHTML = projects.projects.map(p => {
-      const live = repoBy[p.repo] || {};
-      return `
-        <tr>
-          <td class="repo mono"><a href="${repoUrl(p.repo)}">${escape(p.repo)}</a></td>
-          <td><span class="tier tier-${p.tier}">${p.tier}</span></td>
-          <td>${escape(live.language || "—")}</td>
-          <td class="stars">${escape(live.stargazers_count != null ? String(live.stargazers_count) : "—")}</td>
-          <td class="when">${escape(live.pushed_at ? since(live.pushed_at) : "—")}</td>
-          <td class="note">${escape(p.note || "")}</td>
-          <td><a href="${dossierUrl(p.dossier)}">md</a></td>
-        </tr>`;
-    }).join("");
+    document.querySelector("#projects tbody").innerHTML = projects.projects.map(p => `
+      <tr>
+        <td class="repo mono"><a href="${repoUrl(p.repo)}">${escape(p.repo)}</a></td>
+        <td><span class="tier tier-${p.tier}">${p.tier}</span></td>
+        <td class="note">${escape(p.note || "")}</td>
+        <td><a href="${dossierUrl(p.dossier)}">md</a></td>
+      </tr>`).join("");
 
     document.querySelector("#asks tbody").innerHTML = asks.tracked.map(a => {
-      const live = issueBy[a.repo + "#" + a.number] || {};
-      const title = live.title || (a.note || "");
-      const state = live.state || (a.state === "closed-resolved" ? "closed" : "?");
-      const stateClass = state === "open" ? "state-open" : "state-closed";
+      const g = askGlyph(a);
       return `
         <tr>
           <td class="repo mono"><a href="${repoUrl(a.repo)}">${escape(a.repo)}</a></td>
           <td class="num"><a href="${issueUrl(a.repo, a.number)}">#${a.number}</a></td>
-          <td>${escape(title)}</td>
-          <td><span class="state ${stateClass}">${escape(state)}</span></td>
+          <td><span class="s s-${g}" title="${escape(a.state || "open")}">${g === "q" ? "?" : g}</span></td>
           <td><span class="pri pri-${a.priority}">${a.priority}</span></td>
           <td class="note">${escape(a.note || "")}</td>
         </tr>`;
     }).join("");
-
-    document.getElementById("updated").textContent = "rendered " + new Date().toLocaleString();
   })();
   </script>
 </body>
