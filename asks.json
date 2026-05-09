@@ -117,19 +117,19 @@
       "repo": "adiled/iksir",
       "number": 1,
       "priority": "P0",
-      "note": "Record demo: submit, block, answer, complete."
+      "note": "Record demo: ticket arrives, murshid blocks, operator answers via Telegram, transmutation completes. Body rewritten to match actual project shape (was framed as recipe-queue, project is Linear-ticket-driven daemon)."
     },
     {
       "repo": "adiled/iksir",
       "number": 2,
       "priority": "P0",
-      "note": "Add 'Operationally' section to README with concrete mechanics."
+      "note": "Add operational paragraph above the alchemy poem. Reconcile README CLI list with actual src/cli.ts. Make Linux-only constraint and Linear+Telegram dependencies unmissable. Body rewritten to drop the FIFO-recipe-queue framing."
     },
     {
       "repo": "adiled/orch",
       "number": 2,
       "priority": "P0",
-      "note": "Add LICENSE (Apache-2.0 OR MIT, the Rust dual-license convention for libraries)."
+      "note": "Set Cargo.toml license field to Apache-2.0 (LICENSE file already at repo root). Rename crate from `orch` to `orchfile` (orch is taken on crates.io by guywaldman/orch). Update README to declare license. Body rewritten to drop the dual-license recommendation (maintainer chose Apache-only)."
     },
     {
       "repo": "adiled/orchd",
@@ -141,7 +141,7 @@
       "repo": "adiled/orchd",
       "number": 2,
       "priority": "P0",
-      "note": "Add LICENSE (MIT, the convention for Rust end-user binaries)."
+      "note": "Set Cargo.toml license field to Apache-2.0 (LICENSE file already at repo root). Add ## License section to README. cargo publish blocked on orch crate rename. Body rewritten to walk back MIT recommendation."
     },
     {
       "repo": "adiled/orchd",
