@@ -112,17 +112,21 @@
         <tr>
           <th>Repo</th>
           <th>#</th>
-          <th>State</th>
+          <th title="Curated state from asks.json">Ask</th>
+          <th title="Live state from GitHub">Issue</th>
           <th>Pri</th>
           <th>Note</th>
         </tr>
       </thead>
-      <tbody><tr class="skeleton"><td colspan="5">loading...</td></tr></tbody>
+      <tbody><tr class="skeleton"><td colspan="6">loading...</td></tr></tbody>
     </table>
   </section>
 
   <script>
   (async () => {
+    const TTL = 5 * 60 * 1000;
+    const KEY = "dist-cache:v1:";
+
     const escape = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
     const repoUrl = (r) => "https://github.com/" + r;
     const issueUrl = (r, n) => repoUrl(r) + "/issues/" + n;
@@ -135,11 +139,45 @@
       if (s.startsWith("closed")) return "C";
       return "q";
     };
+    const liveGlyph = (live) => {
+      if (!live) return "q";
+      if (live.state === "open") return "O";
+      if (live.state === "closed") return "C";
+      return "q";
+    };
+
+    async function gh(url) {
+      const k = KEY + url;
+      let cached = null;
+      try { cached = JSON.parse(localStorage.getItem(k) || "null"); } catch (_) {}
+      if (cached && (Date.now() - cached.ts) < TTL) return cached.data;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) return cached ? cached.data : null;
+        const data = await res.json();
+        try { localStorage.setItem(k, JSON.stringify({ ts: Date.now(), data })); } catch (_) {}
+        return data;
+      } catch (_) {
+        return cached ? cached.data : null;
+      }
+    }
 
     const [projects, asks] = await Promise.all([
       fetch("../projects.json").then(r => r.json()),
       fetch("../asks.json").then(r => r.json()),
     ]);
+
+    const askRepos = [...new Set(asks.tracked.map(a => a.repo))];
+    const searchQuery = "is:issue " + askRepos.map(r => "repo:" + r).join(" ");
+    const issuesResp = await gh(
+      "https://api.github.com/search/issues?q=" + encodeURIComponent(searchQuery) + "&per_page=100"
+    );
+
+    const issueBy = {};
+    for (const it of (issuesResp?.items || [])) {
+      const repo = String(it.repository_url || "").replace("https://api.github.com/repos/", "");
+      issueBy[repo + "#" + it.number] = it;
+    }
 
     document.querySelector("#projects tbody").innerHTML = projects.projects.map(p => `
       <tr>
@@ -150,12 +188,15 @@
       </tr>`).join("");
 
     document.querySelector("#asks tbody").innerHTML = asks.tracked.map(a => {
-      const g = askGlyph(a);
+      const askG = askGlyph(a);
+      const live = issueBy[a.repo + "#" + a.number];
+      const liveG = liveGlyph(live);
       return `
         <tr>
           <td class="repo mono"><a href="${repoUrl(a.repo)}">${escape(a.repo)}</a></td>
           <td class="num"><a href="${issueUrl(a.repo, a.number)}">#${a.number}</a></td>
-          <td><span class="s s-${g}" title="${escape(a.state || "open")}"></span></td>
+          <td><span class="s s-${askG}" title="ask: ${escape(a.state || "open")}"></span></td>
+          <td><span class="s s-${liveG}" title="issue: ${escape(live?.state || "unknown")}"></span></td>
           <td><span class="pri pri-${a.priority}">${a.priority}</span></td>
           <td class="note">${escape(a.note || "")}</td>
         </tr>`;
