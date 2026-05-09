@@ -114,11 +114,11 @@
       <thead>
         <tr>
           <th>Repo</th>
-          <th>#</th>
+          <th>Pri</th>
           <th title="Curated state from asks.json">Ask</th>
           <th title="Live state from GitHub">Issue</th>
-          <th>Pri</th>
           <th>Note</th>
+          <th>#</th>
         </tr>
       </thead>
       <tbody><tr class="skeleton"><td colspan="6">loading...</td></tr></tbody>
@@ -197,11 +197,11 @@
       return `
         <tr>
           <td class="repo mono"><a href="${repoUrl(a.repo)}">${escape(a.repo)}</a></td>
-          <td class="num"><a href="${issueUrl(a.repo, a.number)}">#${a.number}</a></td>
+          <td><span class="pri pri-${a.priority}">${a.priority}</span></td>
           <td><span class="s s-${askG}" title="ask: ${escape(a.state || "open")}"></span></td>
           <td><span class="s s-${liveG}" title="issue: ${escape(live?.state || "unknown")}"></span></td>
-          <td><span class="pri pri-${a.priority}">${a.priority}</span></td>
           <td class="note">${escape(a.note || "")}</td>
+          <td class="num"><a href="${issueUrl(a.repo, a.number)}">#${a.number}</a></td>
         </tr>`;
     }).join("");
   })();
