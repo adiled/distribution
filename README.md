@@ -26,7 +26,7 @@ distribution/
 - **`policy.md`** is the constraint surface. Read it before drafting a launch. It tells you what to and what not to do.
 - **`channels.md`** is the catalog. Each channel has a one-line pitch, a per-project fit note, and an effort tier so you don't accidentally schedule a launch heavier than the project warrants.
 - **`metrics.md`** is the scoreboard. Numbers that mean something, plus numbers that don't.
-- **`ASKS.md`** is the bottleneck list. If something stalls because Claude can't sign into a service, it goes here, prioritized.
+- **`ASKS.md`** is the dashboard. Direct asks are tracked as GitHub issues on the relevant project repos and indexed here. Strategic and account-shaped items are held under the table and noted only by pointer.
 
 ## Cadence
 

@@ -65,7 +65,7 @@ The job is *prove the thesis*. Each project's launch needs a spike that converts
 
 A T2 project that hits the floor on every launch metric for 90 days demotes back to T3. The audience didn't form, the positioning needs work.
 
-### T3: Ambitious / pre-launch (`bhai-lang`, `iksir`, `orch`/`orchd`)
+### T3: Ambitious / pre-launch (`rishta-lang`, `iksir`, `orch`/`orchd`)
 
 The job is *get launchable*. Metrics here are about readiness, not reach.
 

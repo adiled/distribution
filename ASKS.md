@@ -1,83 +1,67 @@
 # ASKS
 
-Things blocking distribution work that **only the human (`@adiled`) can do.** Sign-ins, account creation, OAuth grants, posting from owned identity, decisions that aren't mine to make.
+Distribution work blocked on the human (`@adiled`). This file is a dashboard, not a tracker. The actual work lives on GitHub issues (mechanical, project-scoped, trackable by anyone) or under-the-table (strategic, account-level, relationship-shaped).
 
-Format: `[priority]` `[unblocks]`. What to do. *Why it's a human task.*
+## Direct asks (tracked on GitHub)
 
-When an ask is resolved, strike it through and move it to the **Resolved** section at the bottom with the date.
+Mechanical and decision items with clean unblock paths. Filed as issues on the relevant repo so the project's own visitors can see what's needed and pick things up if they want to.
 
----
+| Repo | # | Subject | Priority |
+|---|---|---|---|
+| [`distribution`](https://github.com/adiled/distribution/issues/1) | 1 | Set up `adiled/homebrew-tap` repo | P0 |
+| [`distribution`](https://github.com/adiled/distribution/issues/2) | 2 | Decide `adils.me` publishing pipeline | P0 |
+| [`distribution`](https://github.com/adiled/distribution/issues/3) | 3 | Anthropic MCP registry: research the publishing flow | P1 |
+| [`clwnd`](https://github.com/adiled/clwnd/issues/32) | 32 | Restructure README front-matter for cold-visitor comprehension | P1 |
+| [`clwnd`](https://github.com/adiled/clwnd/issues/33) | 33 | Add LICENSE (MIT) before any T2 launch beat | P0 |
+| [`clwnd`](https://github.com/adiled/clwnd/issues/34) | 34 | Tag v0.1.0 release with handwritten release notes | P0 |
+| [`opencode-dir`](https://github.com/adiled/opencode-dir/issues/2) | 2 | Record `/cd` demo (vhs or asciinema) and embed in README | P0 |
+| [`opencode-dir`](https://github.com/adiled/opencode-dir/issues/3) | 3 | Tag v0.1.0 release with notes | P0 |
+| [`opencode-dir`](https://github.com/adiled/opencode-dir/issues/4) | 4 | Add "why a plugin instead of upstream" framing to README | P1 |
+| [`ccft`](https://github.com/adiled/ccft/issues/1) | 1 | Cut README to under 80 lines, move reference content to `docs/` | P0 |
+| [`ccft`](https://github.com/adiled/ccft/issues/2) | 2 | Add LICENSE (Apache-2.0) | P0 |
+| [`ccft`](https://github.com/adiled/ccft/issues/3) | 3 | Tag release with prebuilt universal Mac binary attached | P0 |
+| [`rishta-lang`](https://github.com/adiled/rishta-lang/issues/1) | 1 | Resolve naming collision with the Hindi-keyword bhai-lang | P0 (rename done, downstream cleanup pending) |
+| [`rishta-lang`](https://github.com/adiled/rishta-lang/issues/2) | 2 | Add LICENSE (Apache-2.0 recommended) | P0 |
+| [`iksir`](https://github.com/adiled/iksir/issues/1) | 1 | Add "Operationally" section to README with concrete mechanics | P0 |
+| [`iksir`](https://github.com/adiled/iksir/issues/2) | 2 | Record demo: submit, block, answer, complete | P0 |
+| [`orch`](https://github.com/adiled/orch/issues/2) | 2 | Add LICENSE (Apache-2.0 recommended) | P0 |
+| [`orchd`](https://github.com/adiled/orchd/issues/1) | 1 | Add comparison block to README: orchd vs docker-compose vs systemd vs nomad | P1 |
+| [`orchd`](https://github.com/adiled/orchd/issues/2) | 2 | Add LICENSE (Apache-2.0 recommended) | P0 |
+| [`orchd`](https://github.com/adiled/orchd/issues/3) | 3 | Add full runnable example to README (postgres + small app + healthcheck) | P1 |
+| [`clwnd-playground`](https://github.com/adiled/clwnd-playground/issues/1) | 1 | Add LICENSE | P0 |
+| [`ohlc-resample`](https://github.com/adiled/ohlc-resample/issues/15) | 15 | Update contributors block to use `@adiled` handle only | P1 |
 
-## P0: blocks T2 launches
+When an issue closes, strike its row through here. Periodically reconcile: any item that goes stale on GitHub should either get a fresh comment, get closed with a note, or get rewritten.
 
-- **`[P0]`** **`[unblocks: every T2 launch]`** Create or confirm a **Homebrew tap repo** (`adiled/homebrew-tap`). A public empty repo on GitHub is enough for now. Formulas can be added per-project. *Account-level GitHub action. The repo is part of the public identity.*
+## Held under the table
 
-- **`[P0]`** **`[unblocks: ccft launch, clwnd launch]`** Confirm or create credentials for **crates.io** (the Rust registry) and run `cargo login` locally. *Tied to your GitHub identity. Requires the human OAuth flow.*
+Items that don't belong on a public issue tracker. Account state, credential checks, strategic decisions in flight, relationship work, launch calendar. These live in `inbox/` (gitignored). Do not migrate them to GitHub issues even if it would feel tidier. The reason they're held privately is precisely because public visibility would harm the work.
 
-- **`[P0]`** **`[unblocks: ccft launch, clwnd launch, opencode-dir launch]`** Confirm or create the **`adils.me`** publishing pipeline (whatever it is: Next.js on Vercel, a static-site generator, a hosted blog). The launch plans for `clwnd`, `ccft`, and `bhai-lang` all hinge on a thesis post landing on `adils.me`. If the site is dormant, decide whether to revive it or pick an alternative (own domain plus new static site, Substack, blog.adils.me). *Strategic decision. Affects every T2/T3 launch.*
+Current under-the-table queue (carry over to `inbox/ASKS.md`):
 
-- **`[P0]`** **`[unblocks: bhai-lang launch]`** **Decide the `bhai-lang` rename.** See `projects/bhai-lang.md` "The naming-collision problem." Recommendation is to rename to `بھائی-lang` (with `bhai-lang` as legacy slug). This decision is structural and affects every downstream piece of public copy. *Identity-level call. Only you can make it.*
+- **crates.io credentials.** Run `cargo login`, confirm token reachable.
+- **npm whoami / 2FA.** Verify `@adiled` (or chosen handle) is logged in and 2FA tokens are reachable.
+- **PyPI account state.** Set up an API token, save in keyring.
+- **Lobste.rs invite.** Request on `lobste.rs/invitations`. Submissions can take weeks.
+- **Latent Space pitch shape.** Decide guest essay vs interview vs podcast appearance. Different prep effort, affects timing of pre-launch sequences.
+- **Reddit account warming.** `/r/LocalLLaMA`, `/r/algotrading`, `/r/selfhosted`, `/r/rust`. New accounts get spam-filtered on launch day. Build organic activity on the relevant subs now.
+- **X / Bluesky / Mastodon handle confirmation.** If dormant, post 5 to 10 organic technical posts before any launch beat.
+- **Plausible.io decision.** Whether to set up privacy-respecting analytics on `adils.me` and per-project landing pages.
+- **Launch calendar.** Pick a target month for the first T2 launch (recommended: `opencode-dir` first as low-risk pilot, then `clwnd` about 3 weeks later).
+- **GitHub profile README (`@adiled/adiled`).** Update to reflect tier-ordered roster, not chronological.
+- **Urdu/Pakistani communities outreach list.** For the `rishta-lang` cultural-arc essay distribution.
+- **GitHub Sponsors.** Decide whether to enable on the profile. Sponsors-button presence is itself a maintenance signal.
+- **GitHub notification routing.** Issues on T2 projects should reach you within an hour during launch windows.
 
-- **`[P0]`** **`[unblocks: bhai-lang launch]`** **Decide the `bhai-lang` license.** Recommendation: **Apache-2.0** (patent grant matters for cryptographic and lineage work). *Legal decision. Only you.*
-
-- **`[P0]`** **`[unblocks: clwnd launch, opencode-dir launch, ccft launch, orch/orchd launch]`** Add `LICENSE` files to repos missing them. Recommended defaults from `policy.md` §4:
-  - `clwnd`: MIT
-  - `opencode-dir`: confirmed MIT (verify file present)
-  - `ccft`: Apache-2.0
-  - `orch`: Apache-2.0
-  - `orchd`: Apache-2.0
-  - `clwnd-playground`: MIT (or noted "playground, no warranty")
-
-  *These need a human keystroke (commit and push from your machine). Trivial but I shouldn't be the one signing your repos with a license without explicit confirmation per file.*
-
----
-
-## P1: blocks specific channels
-
-- **`[P1]`** **`[unblocks: ohlc-resample contributor block correction]`** Update the `ohlc-resample` README contributors block to use **`@adiled` only** (and `hello@adils.me` if you still want that contact path), removing the legal-name line. *Public identity decision. Consistent with `policy.md` §2's "Author identity is the handle" rule. I won't touch your existing-and-shipping public README without the explicit go-ahead.*
-
-- **`[P1]`** **`[unblocks: every npm publish for new TS projects]`** Confirm **npm** account state. Does `@adiled` (or whatever your npm handle is) have a current login? Are 2FA tokens reachable? Run `npm whoami` to check. *Account credential. Only you.*
-
-- **`[P1]`** **`[unblocks: every PyPI publish]`** Confirm **PyPI** account state for `bhai-lang` and any future Python projects. Set up an API token, save in keyring. *Account credential. Only you.*
-
-- **`[P1]`** **`[unblocks: MCP-registry distribution]`** Confirm **Anthropic MCP registry** publishing flow. What's the current submission process, what credentials are needed, who owns submissions on behalf of `@adiled`. *Vendor account.*
-
-- **`[P1]`** **`[unblocks: Lobste.rs submissions]`** **Lobste.rs requires an invite.** If you don't have an account, request one (`lobste.rs/invitations`). Submissions can take weeks. Lobste.rs traffic is high-quality for `orch`/`orchd` and other technical-substrate work. *Account creation only you can do.*
-
-- **`[P1]`** **`[unblocks: Latent Space pitch for ccft]`** Decide whether to pitch as **guest essay**, **interview**, or **podcast appearance**. Different prep effort for each. Affects the timing of pre-launch sequences. *Strategic choice. Only you.*
-
-- **`[P1]`** **`[unblocks: Reddit posting on launch days]`** Reddit account in good standing on `/r/LocalLLaMA`, `/r/algotrading`, `/r/selfhosted`, `/r/rust`. New accounts with launch-day posts get filtered as spam. If your account isn't established on each, build organic activity *now* (comments, votes) so launch posts go through. *Identity work. Only you.*
-
-- **`[P1]`** **`[unblocks: X / Bluesky launch threads]`** Confirm `@adiled` (or chosen handle) on X, Bluesky, Mastodon. If currently dormant, post 5 to 10 organic technical posts before any launch beat to look human and active rather than launch-only. *Identity work. Only you.*
-
----
-
-## P2: quality-of-life / nice-to-have
-
-- **`[P2]`** **`[unblocks: distribution analytics]`** Decide whether to set up **plausible.io** (or similar) on `adils.me` and per-project landing pages. Distribution metrics get a lot more reliable with privacy-respecting analytics. *Account and DNS work. Only you.*
-
-- **`[P2]`** **`[unblocks: launch coordination]`** Decide on a **launch calendar**. Per `policy.md` §5: don't launch on Fridays, max one T2 launch per week, max one T2 launch per project per quarter. Pick a target month for the first T2 launch (recommended: `opencode-dir` first as low-risk pilot, then `clwnd` about 3 weeks later). *Calendar choice. Only you.*
-
-- **`[P2]`** **`[unblocks: GitHub profile presentation]`** Update the `@adiled/adiled` profile README to reflect the active T1, T2, T3 roster, ordered by tier rather than chronologically. Currently a profile visitor sees the chronological repo list, which buries the credibility-anchoring `ohlc-resample`. *Public identity surface. Better with your own voice.*
-
-- **`[P2]`** **`[unblocks: substrate-project intellectual seeding]`** Compile the **list of named individuals** in agent-safety and corrigibility circles to send the relevant essay to, when ready. About 10 names. *Relationship work. Only you have the relationships.*
-
-- **`[P2]`** **`[unblocks: bhai-lang's cultural-arc seeding]`** Compile the **list of Urdu/Pakistani tech communities** for the cultural-arc essay distribution (specific Twitter accounts, Slack/Discord groups, journalists who cover Pakistani tech). *Relationship work. Only you.*
-
-- **`[P2]`** **`[unblocks: ohlc-resample maintenance signal]`** Decide whether to enable **GitHub Sponsors** on the `adiled` profile. Sponsors-button presence is itself a maintained-and-serious signal even if no one sponsors. *Identity decision.*
-
-- **`[P2]`** **`[unblocks: launch-day responsiveness]`** Set up **GitHub notification routing**. Issues on T2 projects should reach you within an hour during their launch windows. Mobile notifications, email filters, or a dedicated channel. *Personal workflow. Only you.*
-
----
-
-## How I'll work this list
-
-- **I check this file at the start of each work session.** P0 items get pulled into the active work. P1 items get raised to you when their blocked work is up next.
-- **I won't take destructive or identity-shaping actions without your go-ahead**, even if the action is mechanical (e.g. force-pushing a license update to a repo you've already published). P0 items framed as "add a LICENSE file" mean "tell me which license per repo, then I'll PR it." Not "I'll pick and push."
-- **Anything I notice during work that needs your hand goes in here.** This file is the bottleneck registry. It should grow when you're not looking and shrink when you are.
-
----
+After carrying these over, this section keeps a one-line pointer ("see `inbox/ASKS.md` for the current under-the-table queue") and stops listing them.
 
 ## Resolved
 
-*(empty. Strike-through resolved items here with the date they cleared.)*
+*(Empty. Strike-through closed items here when their issues land in a merged PR or a settled decision.)*
+
+## How this file gets used
+
+- **Weekly review.** Walk the table, check whether any issue closed. Strike through resolved rows. Open new issues for anything new and add it to the table.
+- **Per-launch.** Surface the launch-blocking subset (P0 issues for the project being launched) into the launch-day checklist.
+- **Quarterly.** Reconcile against the issue trackers on each repo. Stale issues get a comment or get closed with a note. The dashboard should not have orphaned entries.
+- **Scope discipline.** If an item doesn't fit either column (not a clean public issue, not a clean private note), it doesn't belong here. Either reshape it until it fits or take it out.

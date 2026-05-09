@@ -12,7 +12,7 @@ Every project lives in exactly one tier. The tier dictates the channel mix, the 
 |---|---|---|---|
 | **T1, Anchor** | Mature, used by strangers, demonstrates credibility for the rest of the portfolio. | `ohlc-resample` | Maintain quietly. Light incremental promotion. The asset is its track record. |
 | **T2, Live** | Working, installable today, audience exists, ready for launch beats. | `clwnd`, `opencode-dir`, `ccft` | Concentrated launch effort. Multi-channel coordinated push. Track install to retain. |
-| **T3, Ambitious / pre-launch** | Working code, but the *positioning* is not yet sharp enough for a wide audience. Needs a thesis post and a real demo before any launch beat. | `bhai-lang`, `iksir`, `orch`/`orchd` | Audience seeding (private shares, niche lists), not broad launches. Promote to T2 only after the positioning artifact exists. |
+| **T3, Ambitious / pre-launch** | Working code, but the *positioning* is not yet sharp enough for a wide audience. Needs a thesis post and a real demo before any launch beat. | `rishta-lang`, `iksir`, `orch`/`orchd` | Audience seeding (private shares, niche lists), not broad launches. Promote to T2 only after the positioning artifact exists. |
 | **T4, Companion** | Supports a T1/T2/T3 project. Not promoted on its own. Mentioned only in the parent project's material. | `clwnd-playground`, `awesome-opencode` | No standalone push. Linked from parent. |
 | **T5, Cultural / dormant** | Not part of the agentic-systems thesis. Ship if and when complete; otherwise leave alone. | `khowarpedia`, `adils.me`, `viteer`, `web3-elements` | No active distribution. README quality only. |
 
@@ -29,7 +29,7 @@ Every project lives in exactly one tier. The tier dictates the channel mix, the 
 ## 2. Naming, branding, identity
 
 - **One name per project.** No internal codenames leaking into READMEs. No "formerly known as." Pick the name once.
-- **Disambiguate aggressively against existing projects.** Names that collide with established projects (e.g. `bhai-lang` collides with the popular Hindi-keyword project of the same name) need either a rename or a clear positioning subtitle on every public surface so search results don't merge them.
+- **Disambiguate aggressively against existing projects.** Names that collide with established projects need either a rename or a clear positioning subtitle on every public surface so search results don't merge them. (Example: this portfolio renamed `bhai-lang` to `rishta-lang` to disambiguate from a popular Hindi-keyword project of the same name.)
 - **Keep cultural / linguistic identity where it's load-bearing.** `بھائی-lang`, `iksir`, `khowarpedia`: these are not decorative. The vocabulary *is* the thing. Distribution copy in English explains the system. It does not flatten the cultural register out of the project itself.
 - **Author identity is the handle.** Public-facing identity across every project, every registry, every social surface is **`adiled`**, not the legal name. Existing READMEs that currently print the legal name (e.g. `ohlc-resample`'s contributors block) are candidates for revision. Track those in `ASKS.md`.
 - **Single canonical contact.** GitHub `@adiled` plus `hello@adils.me` (or whichever email is named on `adils.me` at the time). Same line on every project's contributors block, same handle on every social surface that allows it.
@@ -44,7 +44,7 @@ Distribution copy has three settings. Use exactly one per surface.
 |---|---|---|
 | **Plain technical** | npm/PyPI/crates description, GitHub topic line, awesome-list entry | "Resample OHLCV/tick data to different time frames. CCXT-compatible. CLI + library." |
 | **Demonstrative** | Landing page hero, README opening | "10 lines of code, one minute of data, every timeframe you wanted." |
-| **Project's native register** | Inside the project itself, especially for `iksir`, `bhai-lang` | The README in the project's own vocabulary. |
+| **Project's native register** | Inside the project itself, especially for `iksir`, `rishta-lang` | The README in the project's own vocabulary. |
 
 **Cross-mixing is forbidden.** A README that opens in the project's mythic register and pivots to a marketing tagline reads as inauthentic. Pick one and hold it.
 
@@ -63,7 +63,7 @@ Distribution copy has three settings. Use exactly one per surface.
 | Library to be embedded (npm/PyPI/crates) | **MIT** | Maximum reach. No friction at the import line. |
 | End-user CLI / agent | **MIT** or **Apache-2.0** | Apache when patent-grant clarity matters (anything model-related, anything cryptographic). |
 | Substrate / framework where wholesale embedding into surveillance platforms is undesirable | **AGPL-3.0** or a written custom license | Trade some adoption for non-cooption. Conscious choice, not default. |
-| Data lineage / cryptographic projects (`bhai-lang` rishta runtime) | **Apache-2.0** | Patent grant matters here. |
+| Data lineage / cryptographic projects (`rishta-lang` rishta runtime) | **Apache-2.0** | Patent grant matters here. |
 
 A project shipping without a license is publishing nothing. `LICENSE` file before any launch beat.
 
@@ -109,7 +109,7 @@ The following must all be green for a T2 project before posting publicly:
 
 ## 8. The thesis
 
-The portfolio has a center of gravity: **agentic systems and the substrates they need.** `clwnd`, `opencode-dir`, `ccft`, `iksir`, `orch`/`orchd` all sit on this axis. `bhai-lang`'s rishta runtime is adjacent (it is *what agent lineage should look like* in a language).
+The portfolio has a center of gravity: **agentic systems and the substrates they need.** `clwnd`, `opencode-dir`, `ccft`, `iksir`, `orch`/`orchd` all sit on this axis. `rishta-lang`'s rishta runtime is adjacent (it is *what agent lineage should look like* in a language).
 
 `ohlc-resample` is the credibility anchor. It is not part of the thesis. It proves the maintainer ships things people use.
 

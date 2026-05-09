@@ -32,7 +32,7 @@ This dossier exists to record three things:
 3. Reach out to AKES Chitral, FLI (Forum for Language Initiatives), Endangered Languages Project (Google), and academic Dardic-language researchers.
 4. List on Glottolog and Linguasphere community resources.
 5. Khowar-speaking diaspora groups on Facebook and X. These are the most direct distribution channels for an audience that doesn't engage via tech-typical surfaces.
-6. Possibly cross-promote with `bhai-lang`'s cultural-arc essay as an example of "non-Latin-script software work under @adiled," but only if both projects benefit, and only with permission of the relevant communities.
+6. Possibly cross-promote with `rishta-lang`'s cultural-arc essay as an example of "non-Latin-script software work under @adiled," but only if both projects benefit, and only with permission of the relevant communities.
 
 ## What we are *not* doing now
 

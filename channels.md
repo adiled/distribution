@@ -15,7 +15,7 @@ These are not promotion. They are existence requirements. A project not on its l
 | Channel | Effort | Yield | Audience | Fit |
 |---|---|---|---|---|
 | **npm** | S | ★ | JS/TS users discovering via `npm search` and dep crawlers | `ohlc-resample` (live), `clwnd`, `opencode-dir` |
-| **PyPI** | S | ★ | Python users, plus search engines (`pypi.org` ranks well) | `bhai-lang` (when ready) |
+| **PyPI** | S | ★ | Python users, plus search engines (`pypi.org` ranks well) | `rishta-lang` (when ready) |
 | **crates.io** | S | ★ | Rust users. lib.rs and crates.io both index | `ccft`, `orch`, `orchd` |
 | **Homebrew tap (`adiled/tap`)** | M | ★★ | macOS CLI users. One-line install is real reach | Any standalone CLI: `clwnd`, `iksir`, `ccft`, `orch`, `orchd` |
 | **GitHub Releases** | S | ★★ | Search, RSS subscribers, dep crawlers. Surprisingly material | All. Mandatory for tagged releases |
@@ -41,7 +41,7 @@ Slow-burn discovery. Every entry sends consistent low-volume traffic for years.
 | **`awesome-typescript`** | M | ★ | Large, diluted. Limited yield unless project is a popular library. |
 | **`awesome-self-hosted`** | M | ★★★ | Direct fit for `orch`/`orchd` (service orchestration) and any locally-runnable substrate work. High-traffic list. |
 | **`crypto-trading` / `algotrading` lists** | M | ★★ | `ohlc-resample` belongs here. Submit to one or two well-maintained ones. |
-| **`PyPL`-equivalent language pages** | S | ★ | Only matters for `bhai-lang` (esolang and new-language indexes: esolangs.org, ProgrammingLanguages.io). |
+| **`PyPL`-equivalent language pages** | S | ★ | Only matters for `rishta-lang` (esolang and new-language indexes: esolangs.org, ProgrammingLanguages.io). |
 | **`alternativeto.net`** | M | ★ | If the project is positioned as an alternative to a known tool (e.g. `orchd` vs docker-compose), worth the entry. |
 
 ---
@@ -98,7 +98,7 @@ These do not accept self-submission unguardedly. The relationship is "produce so
 | **Conference talks (LangCon, AI Engineer Summit, JSConf, RustConf)** | XL | ★★★★ | A talk that lands becomes the canonical introduction to a project for years. CFP windows are public. |
 | **Podcasts (Latent Space, Software Engineering Daily, Changelog, FLOSS Weekly)** | L | ★★★ | Reach out to producers with a one-paragraph hook and clip. Episode plus transcript equals months of search traffic. |
 | **Live streams / YouTube demos** | L | ★★ | Lower per-event yield but compounds. Embed links from READMEs. |
-| **University / research seminars** | XL | ★★ | Right venue for `bhai-lang` (lineage / GDPR) and certain T3 substrate projects. Academic audiences engage seriously. |
+| **University / research seminars** | XL | ★★ | Right venue for `rishta-lang` (lineage / GDPR) and certain T3 substrate projects. Academic audiences engage seriously. |
 
 ---
 
@@ -130,8 +130,8 @@ Lighter coordinated launch: `awesome-opencode` PR, opencode community channels, 
 ### `ccft` (T2)
 Show HN candidate but with a different framing. Not "I made a tool" but "here's what your Claude Code session is actually doing: proxy and token ledger." Pair with an `adils.me` post showing real ledger output. `awesome-claude-code` PR follows.
 
-### `bhai-lang` (T3)
-Two arcs. First, the *novel-language* arc: esolangs.org, programming-languages communities, eventually a research-style writeup. Second, the *data lineage* arc: GDPR/AI-governance audiences, OpenLineage / DataHub adjacencies. Naming collision with the Hindi `bhai-lang` is a real problem. Address before any launch.
+### `rishta-lang` (T3)
+Two arcs. First, the *novel-language* arc: esolangs.org, programming-languages communities, eventually a research-style writeup. Second, the *data lineage* arc: GDPR/AI-governance audiences, OpenLineage / DataHub adjacencies. The bhai-lang naming collision was resolved by renaming to `rishta-lang`. Public copy goes forward under the new name.
 
 ### `iksir` (T3)
 Currently positioned in pure mythic register. That's authentic, but the README also needs a "what this actually does in operational terms" tier so an opencode user lands and gets value within 60 seconds. Once that exists, ship through `awesome-opencode`, opencode community, and a demo video.
