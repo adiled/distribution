@@ -1,0 +1,12 @@
+# Private — never commit
+bunker/
+
+# Local scratch
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+*.local.md
+scratch/
+tmp/
