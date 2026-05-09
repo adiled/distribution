@@ -135,7 +135,8 @@
       "repo": "adiled/ohlc-resample",
       "number": 15,
       "priority": "P1",
-      "note": "Update contributors block to use @adiled handle only."
+      "note": "Closed. README contributors block already pairs the legal name with @adiled, which is correct under the revised policy.md §2 (two-register identity rule).",
+      "state": "closed-resolved"
     }
   ]
 }

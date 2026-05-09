@@ -31,8 +31,12 @@ Every project lives in exactly one tier. The tier dictates the channel mix, the 
 - **One name per project.** No internal codenames leaking into READMEs. No "formerly known as." Pick the name once.
 - **Disambiguate aggressively against existing projects.** Names that collide with established projects need either a rename or a clear positioning subtitle on every public surface so search results don't merge them. (Example: this portfolio renamed `bhai-lang` to `rishta-lang` to disambiguate from a popular Hindi-keyword project of the same name.)
 - **Keep cultural / linguistic identity where it's load-bearing.** `بھائی-lang`, `iksir`, `khowarpedia`: these are not decorative. The vocabulary *is* the thing. Distribution copy in English explains the system. It does not flatten the cultural register out of the project itself.
-- **Author identity is the handle.** Public-facing identity across every project, every registry, every social surface is **`adiled`**, not the legal name. Existing READMEs that currently print the legal name (e.g. `ohlc-resample`'s contributors block) are candidates for revision. Track those in `ASKS.md`.
-- **Single canonical contact.** GitHub `@adiled` plus `hello@adils.me` (or whichever email is named on `adils.me` at the time). Same line on every project's contributors block, same handle on every social surface that allows it.
+- **Two identity registers, used on different surfaces.**
+  - **Formal / project attribution.** Project READMEs' contributors blocks, registry author fields (npm `author`, `Cargo.toml` `authors`, PyPI `author`), `LICENSE` copyright lines, research papers, conference bios, signed correspondence: include both. The legal name "Adil Shaikh" is the formal identity, the handle `@adiled` is the canonical online identity. Both belong on these surfaces, side by side.
+  - **Casual / informal.** Distribution dossiers, internal notes, social profiles, chat, commit messages, and the writing register of the projects' own voice: `adiled` only. The legal name does not need to ride along on every line of prose.
+  - **Default when unsure.** Include the handle. If the surface is formal enough that omitting the legal name would feel slight, include both.
+- **Single canonical contact.** GitHub `@adiled` plus `hello@adils.me` (or whichever email is named on `adils.me` at the time). Same contact path on every project's contributors block.
+- **Existing READMEs that already include both** (e.g. `ohlc-resample` lists "Adil Shaikh <hello@adils.me>" alongside "Github: @adiled") are correct under this rule. No revision needed.
 
 ---
 

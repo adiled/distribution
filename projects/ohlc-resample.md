@@ -32,14 +32,13 @@ Everything else in the portfolio is downstream of the trust this project produce
 - ❌ No landing page (`ohlc-resample.dev` or similar). GitHub README is the only surface. Low-cost win.
 - ❌ Not yet listed on awesome-algotrading, awesome-quant, or awesome-ccxt curated lists. Each is a 30-minute PR.
 - ❌ No reverse-citation tracking. We don't know which projects depend on it (`Used by` count not actively monitored).
-- ❌ Author name in README is the legal name, not `adiled`. Conflicts with `policy.md` §2. (See `ASKS.md`.)
 - ❌ No demo content beyond code blocks. A 30-second asciinema of the CLI converting CSV to JSON resampled would be a strong README addition.
 
 ## Plan (next 90 days)
 
 The mode is **maintain plus light promotion**, not relaunch.
 
-1. **Week 1.** README pass: replace legal-name contributor block with `@adiled`. Add a short asciinema or `vhs` demo above the install instructions. Add a "Who uses this" section if any external dependents exist (check `npm view ohlc-resample dependents` and GitHub's "Used by").
+1. **Week 1.** README pass: add a short asciinema or `vhs` demo above the install instructions. Add a "Who uses this" section if any external dependents exist (check `npm view ohlc-resample dependents` and GitHub's "Used by"). The contributors block already pairs the legal name with `@adiled`, which is correct under `policy.md` §2.
 2. **Week 2.** PRs to relevant awesome-lists:
    - `awesome-algotrading` (well-maintained, accepts PRs)
    - `awesome-ccxt` (smaller but direct fit)
