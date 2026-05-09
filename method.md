@@ -42,6 +42,8 @@ What is the project actively grappling with? What did it carve away? What does t
 
 A project named for one thing in its README and showing up as something else in its commits is a project mid-migration. The dossier needs to know which side it sits on.
 
+**Fact-check the prior dossier here.** The previous dossier may claim "no LICENSE" when one is present, "no tagged release" when twenty have shipped, "blocked on X" when X is already done. Imported priors and stale state hide in these gap statements. Verify each "no X" claim and each "needs Y" claim against the current repo. Issues that turn out stale get closed in the asks tracker (with a note explaining why), not carried forward.
+
 ### 4. Listen for the project's voice
 
 By now you can describe, in the project's own register, what the project is. Write that description in one paragraph. Do not substitute a market category. If the project says "alchemy," use "alchemy." If the project says "stewardship," use "stewardship." If the project's name is no longer expanding to what it once did, do not force the old expansion (`ccft` may have been *Claude Code Fly Trap* once and might no longer carry that meaning).
