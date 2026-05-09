@@ -25,7 +25,7 @@
       "repo": "adiled/ccft",
       "tier": "T2",
       "dossier": "projects/ccft.md",
-      "note": "Live. MITM proxy plus token ledger plus TUI. README cut is the top blocker."
+      "note": "Live. Claude Code companion that scores bot/driver vibe over time. v1.5.0 release-ready. crates.io and Homebrew remaining."
     },
     {
       "repo": "adiled/rishta-lang",
