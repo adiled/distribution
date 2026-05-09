@@ -6,20 +6,6 @@ Operational source of truth for distributing `adiled`'s open-source projects. Th
 
 This repo is not a launcher and not a CRM. It is a written mind: every public-facing decision about what gets shipped, where, when, in what voice, against which target gets recorded here. Commits are the changelog of distribution thinking.
 
-## Layout
-
-```
-distribution/
-├── README.md             # this file. charter and how to use the repo
-├── policy.md             # the operating policy (tiering, voice, license, naming)
-├── channels.md           # every distribution channel under consideration, with effort/yield
-├── metrics.md            # what we count and what counts as winning, per tier
-├── ASKS.md               # human-only tasks blocking distribution work
-└── projects/
-    ├── _index.md         # roster of active projects with tier and current status
-    └── <project>.md      # per-project dossier: positioning, audience, plan, current state
-```
-
 ## How to use it
 
 - **`projects/_index.md`** is the wide view. Open this first to see what's in play.
