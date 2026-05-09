@@ -14,7 +14,7 @@ Last refreshed: 2026-05-09
 | [`iksir`](https://github.com/adiled/iksir) | T3 | TS (Deno) | 0 | 2026-03-30 | Alchemical opencode workflow tool. README is pure mythic register, needs an operational tier added. | [→](./iksir.md) |
 | [`orch`](https://github.com/adiled/orch) / [`orchd`](https://github.com/adiled/orchd) | T3 | Rust | 0 | 2026-03-07 | Orchfile spec and execution engine. Cleanly scoped and technical. Needs framing as docker-compose alternative. | [→](./orch.md) |
 | [`khowarpedia`](https://github.com/adiled/khowarpedia) | T5 | JS | 0 | 2026-03-29 | Khowar-English dictionary. Cultural project, not on the agentic-systems axis. | [→](./khowarpedia.md) |
-| [`clwnd-playground`](https://github.com/adiled/clwnd-playground) | T4 | Python | 0 | 2026-04-26 | Companion / demo repo for `clwnd`. Not promoted standalone. | [→](./clwnd-playground.md) |
+| [`clwnd-playground`](https://github.com/adiled/clwnd-playground) | T4 | Python | 0 | 2026-04-26 | Public scratch directory of one clwnd-driven session, single commit, unedited. Demonstration of clwnd in action, not a project. | [→](./clwnd-playground.md) |
 
 ## Projects deliberately out of distribution scope
 
