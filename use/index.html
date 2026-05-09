@@ -50,10 +50,9 @@
       margin-inline: auto;
     }
     code, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
-    h1 { font-size: 1.5rem; margin: 0 0 .25rem; font-weight: 500; letter-spacing: -.01em; }
-    h2 { font-size: 1.05rem; margin: 2.5rem 0 .75rem; font-weight: 600; letter-spacing: -.005em; }
-    .meta { color: var(--muted); font-size: .85rem; margin: 0 0 .5rem; }
-    .meta a { color: var(--muted); }
+    h2 { font-size: 1.05rem; margin: 2rem 0 .75rem; font-weight: 600; letter-spacing: -.005em; }
+    h2:first-child { margin-top: 0; }
+    section:first-of-type h2 { margin-top: 0; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     table { width: 100%; border-collapse: collapse; font-size: .9rem; }
@@ -94,14 +93,6 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>distribution</h1>
-    <p class="meta">
-      <a href="https://github.com/adiled">@adiled</a> portfolio.
-      Stencil over <a href="../projects.json">projects.json</a> and <a href="../asks.json">asks.json</a>. Click any row to reach live state on GitHub.
-    </p>
-  </header>
-
   <section>
     <h2>Projects</h2>
     <table id="projects">
