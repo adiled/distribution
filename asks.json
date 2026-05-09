@@ -7,7 +7,8 @@
       "repo": "adiled/distribution",
       "number": 1,
       "priority": "P0",
-      "note": "Set up adiled/homebrew-tap. Cross-portfolio infrastructure."
+      "note": "Closed. Tap repo created at adiled/homebrew-tap with slated-formulae roster. Formulae land per-project at T2 launch checklist time.",
+      "state": "closed-resolved"
     },
     {
       "repo": "adiled/distribution",
