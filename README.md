@@ -6,14 +6,6 @@ Operational source of truth for distributing `adiled`'s open-source projects. Th
 
 This repo is not a launcher and not a CRM. It is a written mind: every public-facing decision about what gets shipped, where, when, in what voice, against which target gets recorded here. Commits are the changelog of distribution thinking.
 
-## How to use it
-
-- **`projects/_index.md`** is the wide view. Open this first to see what's in play.
-- **`policy.md`** is the constraint surface. Read it before drafting a launch. It tells you what to and what not to do.
-- **`channels.md`** is the catalog. Each channel has a one-line pitch, a per-project fit note, and an effort tier so you don't accidentally schedule a launch heavier than the project warrants.
-- **`metrics.md`** is the scoreboard. Numbers that mean something, plus numbers that don't.
-- **`ASKS.md`** is the dashboard. Direct asks are tracked as GitHub issues on the relevant project repos and indexed here. Strategic and account-shaped items are held under the table and noted only by pointer.
-
 ## Cadence
 
 - **Weekly.** Review `projects/_index.md`, update tier and status. Clear or escalate items in `ASKS.md`.
