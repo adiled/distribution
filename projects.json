@@ -7,13 +7,13 @@
       "repo": "adiled/ohlc-resample",
       "tier": "T1",
       "dossier": "projects/ohlc-resample.md",
-      "note": "Anchor. Mature, npm-published, Changesets release flow live."
+      "note": "Anchor. Small TypeScript library and CLI for resampling OHLCV candles between time frames. Live on npm at 1.2.1 with recurring weekly downloads; v2.0.0 staged on feat/cli-improvements with working CLI, install.sh, and Changesets release flow."
     },
     {
       "repo": "adiled/opencode-dir",
       "tier": "T2",
       "dossier": "projects/opencode-dir.md",
-      "note": "Live. Working install script, audience traction. Lower-stakes T2 to lead with."
+      "note": "Live. Single-file opencode plugin adding /cd, /mv, /add-dir slash commands by writing to opencode's sqlite session state. Paired with OPENCODE_GAP.md upstream proposal that already drew a maintainer response on opencode#2177. v1.0.6 to v1.0.8 ship a syntax error in index.ts; fix-and-republish is the dominant launch blocker."
     },
     {
       "repo": "adiled/clwnd",
@@ -31,19 +31,19 @@
       "repo": "adiled/rishta-lang",
       "tier": "T3",
       "dossier": "projects/rishta-lang.md",
-      "note": "Pre-launch. Kinship-typed lineage language. Renamed from bhai-lang."
+      "note": "Pre-launch. Programming language whose runtime substrate is رشتہ (kinship), with kinship-typed lineage edges, cascading consent revocation, and Merkle-chained گواہی testimony. Workshop-grade paper compiled. License is the only hard blocker."
     },
     {
       "repo": "adiled/iksir",
       "tier": "T3",
       "dossier": "projects/iksir.md",
-      "note": "Pre-launch. Single-flame opencode workflow tool. Needs operational tier in README."
+      "note": "Pre-launch. Linux daemon that runs OpenCode sessions on Linear tickets one at a time, with the operator routed in over Telegram only when the question assay marks it worth answering. No tagged release yet, README ahead of CLI, demo and adils.me thesis post outstanding."
     },
     {
       "repo": "adiled/orch",
       "tier": "T3",
       "dossier": "projects/orch.md",
-      "note": "Pre-launch. Orchfile parser and spec library. Pairs with orchd."
+      "note": "Pre-launch. Rust parser and library for the Orchfile format, a Containerfile-shaped service-orchestration DSL with systemd-drop-in overlay semantics. Emits stable JSON for downstream generators (orchd is one). v0.2.0 local tag; crates.io publish blocked on name (orch is taken; orchfile available)."
     },
     {
       "repo": "adiled/orchd",
@@ -61,7 +61,7 @@
       "repo": "adiled/khowarpedia",
       "tier": "T5",
       "dossier": "projects/khowarpedia.md",
-      "note": "Cultural. Khowar-English dictionary, separate orbit from the agentic-systems thesis."
+      "note": "Cultural. Browser-native Khowar lookup served from adils.me/khowar, around 8,200 entries from the rachitrali corpus, rendered in Awami Nastaliq. Separate orbit from the agentic-systems thesis."
     }
   ]
 }
