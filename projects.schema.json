@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/adiled/distribution/blob/main/projects.schema.json",
   "title": "Distribution Projects Registry",
-  "description": "Curated registry of OSS projects under distribution for the @adiled portfolio. Source of truth for which projects are tracked and at what tier. Live data (stars, push date, description) is fetched from GitHub on demand and is not duplicated in the registry.",
+  "description": "Curated registry of OSS projects under distribution for the @adiled portfolio. Self-contained: tier, dossier path, and one-line note. Live state lives on GitHub and is reachable by clicking through.",
   "type": "object",
   "required": ["version", "projects"],
   "additionalProperties": false,

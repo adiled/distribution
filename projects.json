@@ -1,7 +1,7 @@
 {
   "$schema": "./projects.schema.json",
   "version": 1,
-  "description": "Curated registry of @adiled's OSS projects under distribution. Mirrors the shape of asks.json. Live data (stars, last push, description) is fetched from GitHub on demand, not duplicated here.",
+  "description": "Curated registry of @adiled's OSS projects under distribution. Self-contained: tier, dossier path, and one-line note for each project. Live state (stars, push date, description) lives on GitHub and is one click away from each row in the dashboard.",
   "projects": [
     {
       "repo": "adiled/ohlc-resample",

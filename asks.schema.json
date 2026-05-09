@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/adiled/distribution/blob/main/asks.schema.json",
   "title": "Distribution Asks Registry",
-  "description": "Curated registry of GitHub issues tracked as distribution asks for the @adiled portfolio. Source of truth for which issues are tracked. Live state (open/closed, title, comments) is fetched from GitHub on demand and is not duplicated in the registry.",
+  "description": "Curated registry of GitHub issues tracked as distribution asks for the @adiled portfolio. Self-contained: repo, issue number, priority, optional note and curation state. Live issue state lives on GitHub and is reachable by clicking through.",
   "type": "object",
   "required": ["version", "tracked"],
   "additionalProperties": false,

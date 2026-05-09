@@ -6,4 +6,4 @@ Operational source of truth for distributing `adiled`'s open-source projects. Th
 
 This repo is not a launcher and not a CRM. It is a written mind: every public-facing decision about what gets shipped, where, when, in what voice, against which target gets recorded here. Commits are the changelog of distribution thinking.
 
-Browser view: [https://adiled.github.io/distribution/use/](https://adiled.github.io/distribution/use/) reads `projects.json` and `asks.json` and pulls live state from GitHub.
+Browser view: [https://adiled.github.io/distribution/use/](https://adiled.github.io/distribution/use/) renders `projects.json` and `asks.json`. Live state lives on GitHub, one click away from each row.
