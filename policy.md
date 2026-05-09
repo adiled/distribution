@@ -60,12 +60,18 @@ Distribution copy has three settings. Use exactly one per surface.
 
 | Project type | Default | Notes |
 |---|---|---|
-| Library to be embedded (npm/PyPI/crates) | **MIT** | Maximum reach. No friction at the import line. |
-| End-user CLI / agent | **MIT** or **Apache-2.0** | Apache when patent-grant clarity matters (anything model-related, anything cryptographic). |
+| End-user binary (CLI / TUI / daemon) with no library exports | **MIT** | Maximum reach, fewest legal questions. The Apache patent grant has nothing to attach to in a binary nobody depends on at compile time. |
+| Library on npm / PyPI / crates.io that downstream code imports | **MIT** for npm/PyPI ecosystems, **`Apache-2.0 OR MIT`** for Rust | Dual-license is the Rust convention (tokio, hyper, serde, cargo). For npm and PyPI, plain MIT is the convention. |
+| Project that invents novel cryptographic IP, or whose runtime is explicitly intended to be embedded into systems where patent assertion is a real risk | **Apache-2.0** | Patent grant earns its weight only when there is patentable IP being generated or downstream embedders need protection. Generic "uses crypto libraries" does not qualify. |
 | Substrate / framework where wholesale embedding into surveillance platforms is undesirable | **AGPL-3.0** or a written custom license | Trade some adoption for non-cooption. Conscious choice, not default. |
-| Data lineage / cryptographic projects (`rishta-lang` rishta runtime) | **Apache-2.0** | Patent grant matters here. |
 
 A project shipping without a license is publishing nothing. `LICENSE` file before any launch beat.
+
+**Practical defaults across the current portfolio:**
+- `ohlc-resample`: LGPL-3.0 (already shipped, leave alone)
+- `clwnd`, `opencode-dir`, `iksir`, `clwnd-playground`, `ccft`, `orchd`: MIT
+- `orch` (parser/spec library): `Apache-2.0 OR MIT`
+- `rishta-lang` (runtime intended to be embedded per v0.10 roadmap): Apache-2.0
 
 ---
 

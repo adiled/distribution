@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "description": "Registry of GitHub issues curated as distribution asks for the @adiled portfolio. Source of truth for which issues are tracked. Live status (open/closed, title, comments) is fetched from GitHub on demand, not duplicated here.",
+  "underTheTablePointer": "inbox/ASKS.md",
+  "tracked": [
+    {
+      "repo": "adiled/distribution",
+      "number": 1,
+      "priority": "P0",
+      "note": "Set up adiled/homebrew-tap. Cross-portfolio infrastructure."
+    },
+    {
+      "repo": "adiled/distribution",
+      "number": 2,
+      "priority": "P0",
+      "note": "Decide adils.me publishing pipeline. Blocks every thesis-post-driven launch."
+    },
+    {
+      "repo": "adiled/distribution",
+      "number": 3,
+      "priority": "P1",
+      "note": "Anthropic MCP registry: research the publishing flow."
+    },
+    {
+      "repo": "adiled/clwnd",
+      "number": 32,
+      "priority": "P0",
+      "note": "Add LICENSE (MIT)."
+    },
+    {
+      "repo": "adiled/clwnd",
+      "number": 33,
+      "priority": "P1",
+      "note": "Restructure README front-matter for cold-visitor comprehension."
+    },
+    {
+      "repo": "adiled/clwnd",
+      "number": 34,
+      "priority": "P0",
+      "note": "Tag v0.1.0 release with handwritten notes."
+    },
+    {
+      "repo": "adiled/opencode-dir",
+      "number": 2,
+      "priority": "P1",
+      "note": "Add 'why a plugin instead of upstream' framing to README."
+    },
+    {
+      "repo": "adiled/opencode-dir",
+      "number": 3,
+      "priority": "P0",
+      "note": "Tag v0.1.0 release with notes."
+    },
+    {
+      "repo": "adiled/opencode-dir",
+      "number": 4,
+      "priority": "P0",
+      "note": "Record /cd demo (vhs or asciinema) and embed in README."
+    },
+    {
+      "repo": "adiled/ccft",
+      "number": 1,
+      "priority": "P0",
+      "note": "Cut README to under 80 lines, move reference content to docs/. Top blocker."
+    },
+    {
+      "repo": "adiled/ccft",
+      "number": 2,
+      "priority": "P0",
+      "note": "Tag release with prebuilt universal Mac binary attached."
+    },
+    {
+      "repo": "adiled/ccft",
+      "number": 3,
+      "priority": "P0",
+      "note": "Closed. LICENSE (MIT) already in place. Apache-2.0 recommendation walked back per policy.md §4 revision.",
+      "state": "closed-resolved"
+    },
+    {
+      "repo": "adiled/rishta-lang",
+      "number": 1,
+      "priority": "P0",
+      "note": "Add LICENSE (Apache-2.0). Runtime is intended to be embedded per v0.10 roadmap, patent grant earns its weight."
+    },
+    {
+      "repo": "adiled/rishta-lang",
+      "number": 2,
+      "priority": "P0",
+      "note": "Naming collision resolved by renaming bhai-lang to rishta-lang. Issue tracks downstream cleanup (PyPI name, console-scripts, README front-matter, awesome-list entries)."
+    },
+    {
+      "repo": "adiled/iksir",
+      "number": 1,
+      "priority": "P0",
+      "note": "Record demo: submit, block, answer, complete."
+    },
+    {
+      "repo": "adiled/iksir",
+      "number": 2,
+      "priority": "P0",
+      "note": "Add 'Operationally' section to README with concrete mechanics."
+    },
+    {
+      "repo": "adiled/orch",
+      "number": 2,
+      "priority": "P0",
+      "note": "Add LICENSE (Apache-2.0 OR MIT, the Rust dual-license convention for libraries)."
+    },
+    {
+      "repo": "adiled/orchd",
+      "number": 1,
+      "priority": "P1",
+      "note": "Add full runnable example to README (postgres + small app + healthcheck)."
+    },
+    {
+      "repo": "adiled/orchd",
+      "number": 2,
+      "priority": "P0",
+      "note": "Add LICENSE (MIT, the convention for Rust end-user binaries)."
+    },
+    {
+      "repo": "adiled/orchd",
+      "number": 3,
+      "priority": "P1",
+      "note": "Add comparison block to README: orchd vs docker-compose vs systemd vs nomad."
+    },
+    {
+      "repo": "adiled/clwnd-playground",
+      "number": 1,
+      "priority": "P0",
+      "note": "Add LICENSE."
+    },
+    {
+      "repo": "adiled/ohlc-resample",
+      "number": 15,
+      "priority": "P1",
+      "note": "Update contributors block to use @adiled handle only."
+    }
+  ]
+}

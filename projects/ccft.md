@@ -37,7 +37,7 @@ The TUI is the new center of gravity. A proxy is a backend story. A TUI is a *sc
 ## Distribution state: gaps
 
 - ❌ **README bloat.** The README has grown to encyclopedia length: install, uninstall, lifecycle, dev mode, config, ledger schema, how-it-works diagram, TUI keyboard table, file layout, full subcommand reference, sources, lua/ history. A first-time visitor scrolling past the screenshot has to wade through 200+ lines of reference material before they decide whether to install. Most of this should move to `docs/` (or `ccft <cmd> --help`, or `man ccft`), with the README left as: screenshot, pitch, three properties, install one-liner, "what's inside" (TUI, ledger, config), "see docs/ for the rest." The reference content is good, it's just on the wrong surface.
-- ❌ **No license file in README.** Mandatory before launch (`policy.md` §4). Apache-2.0 is appropriate here (touches cryptographic concerns: self-signed CA generation).
+- ❌ **No license file in README.** Mandatory before launch (`policy.md` §4). Recommendation: **MIT.** ccft is an end-user binary with no library exports. The crypto surface (self-signed CA, TLS) is entirely inherited from `rcgen` and `rustls`, not invented here. The Apache patent grant has nothing to attach to. MIT is shorter, clearer, and matches the convention for Rust end-user binaries (bat, exa, fd, gitui, atuin, bottom).
 - ❌ Not on crates.io. The Rust audience expects `cargo install ccft` as a credible install path.
 - ❌ Not on Homebrew. macOS-only project (launchd). Homebrew is the natural channel.
 - ❌ Linux not yet supported (launchd-only). Document this clearly in the README front-matter, not buried. Managing user expectations early prevents bug reports.
@@ -50,7 +50,7 @@ The TUI is the new center of gravity. A proxy is a backend story. A TUI is a *sc
 
 **Pre-launch (must all be green):**
 
-1. **License.** Add `LICENSE` (Apache-2.0). Mention in README.
+1. **License.** Add `LICENSE` (MIT). Mention in README.
 2. **README cut.** Move config table, ledger schema, file layout, full subcommand reference, sources, and lua/ history to `docs/`. Keep in README: hero screenshot, pitch, three design properties, install snippet, macOS-only callout, one-line note about each feature surface (TUI, ledger, dev mode), link to `docs/`. Target: under 80 lines.
 3. **Linux callout** at the top of the README, near the screenshot. One sentence, honestly framed.
 4. **crates.io publish.** `cargo publish`. Stable name reservation alone is worth it.

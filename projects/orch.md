@@ -35,7 +35,7 @@ Distribution-wise, it is also the project most likely to land in **Rust and self
 
 ## Distribution state: gaps
 
-- ❌ **License not declared in either README.** Mandatory before launch. Recommended: **Apache-2.0** (system-orchestration tooling benefits from explicit patent grants for downstream embedders).
+- ❌ **License not declared in either README.** Mandatory before launch. Recommendation: **`orch` as `Apache-2.0 OR MIT`** (Rust dual-license convention for libraries that downstream depends on). **`orchd` as MIT** (end-user binary, no library exports, same logic as any Rust CLI).
 - ❌ Not on crates.io. Hard requirement for a Rust tool's credibility. `cargo install orch` and `cargo install orchd` are the expected install paths.
 - ❌ No comparison framing in the README. The audience needs *immediate* answers to "how is this different from docker-compose? from raw systemd? from nomad? from pm2?" A short comparison table near the top of `orchd`'s README would yield a lot for the effort.
 - ❌ No example Orchfile in either README beyond a partial fragment. A full, runnable example showing a 2 or 3 service stack (postgres, redis, app) end-to-end would let readers internalize the spec quickly.
@@ -49,7 +49,10 @@ Distribution-wise, it is also the project most likely to land in **Rust and self
 
 **Phase 1: Polish (weeks 1 to 2):**
 
-1. **License both repos** (Apache-2.0). Add `LICENSE`. Mention in READMEs.
+1. **License each repo on its own terms.**
+   - `orch` (parser/spec library, published to crates.io as a dependency): **`Apache-2.0 OR MIT`**, the Rust dual-license convention.
+   - `orchd` (end-user binary): **MIT**, the convention for Rust CLI tools.
+   Add `LICENSE` files. Set the `license` field in each `Cargo.toml`. Mention in READMEs.
 2. **Add a comparison block** to `orchd`'s README, near the top: `orch/orchd` vs `docker-compose` vs raw `systemd` vs `nomad`. Be honest about trade-offs.
 3. **Full runnable example** in `orchd` README. A 2 or 3 service stack (postgres, a small app, a healthcheck), with the full Orchfile, the generated systemd unit (snippet), and the `orchd up` to `orchd health` flow.
 4. **Cross-linking.** `orch`'s README links to `orchd` as "execution engine." `orchd`'s README links to `orch` as "parser/spec." (Already partially done. Verify and reinforce.)
