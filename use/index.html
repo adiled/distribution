@@ -171,14 +171,26 @@
       fetch("../asks.json").then(r => r.json()),
     ]);
 
-    const repoNames = projects.projects.map(p => p.repo);
-    const [repoData, issueData] = await Promise.all([
-      Promise.all(repoNames.map(r => gh("https://api.github.com/repos/" + r))),
-      Promise.all(asks.tracked.map(a => gh("https://api.github.com/repos/" + a.repo + "/issues/" + a.number))),
+    // Bulk both sides: one /users/adiled/repos call for project metadata,
+    // one search call with all repo: filters OR'd for issue state.
+    const repoNames = [...new Set(projects.projects.map(p => p.repo))];
+    const askRepos = [...new Set(asks.tracked.map(a => a.repo))];
+    const searchQuery = "is:issue " + askRepos.map(r => "repo:" + r).join(" ");
+    const searchUrl = "https://api.github.com/search/issues?q=" + encodeURIComponent(searchQuery) + "&per_page=100";
+
+    const [allRepos, issuesResp] = await Promise.all([
+      gh("https://api.github.com/users/adiled/repos?per_page=100"),
+      gh(searchUrl),
     ]);
 
     const repoBy = {};
-    repoData.forEach((d, i) => { if (d) repoBy[repoNames[i]] = d; });
+    for (const r of (allRepos || [])) repoBy[r.full_name] = r;
+
+    const issueBy = {};
+    for (const it of (issuesResp?.items || [])) {
+      const repo = String(it.repository_url || "").replace("https://api.github.com/repos/", "");
+      issueBy[repo + "#" + it.number] = it;
+    }
 
     document.querySelector("#projects tbody").innerHTML = projects.projects.map(p => {
       const live = repoBy[p.repo] || {};
@@ -194,8 +206,8 @@
         </tr>`;
     }).join("");
 
-    document.querySelector("#asks tbody").innerHTML = asks.tracked.map((a, i) => {
-      const live = issueData[i] || {};
+    document.querySelector("#asks tbody").innerHTML = asks.tracked.map(a => {
+      const live = issueBy[a.repo + "#" + a.number] || {};
       const title = live.title || (a.note || "");
       const state = live.state || (a.state === "closed-resolved" ? "closed" : "?");
       const stateClass = state === "open" ? "state-open" : "state-closed";
