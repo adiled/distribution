@@ -77,17 +77,14 @@
     .pri-P2 { background: var(--muted); color: var(--bg); }
     .s {
       display: inline-block;
-      min-width: 1.4em;
-      padding: 0 .35em;
-      text-align: center;
-      border-radius: 3px;
-      font: 700 .75rem/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-      color: #fff;
+      line-height: 1;
+      vertical-align: middle;
     }
-    .s-O { background: var(--blue); }
-    .s-C { background: var(--red); }
-    .s-R { background: var(--green); }
-    .s-q { background: var(--muted); }
+    .s::before { content: "●"; font-size: 1rem; }
+    .s-O::before { color: var(--blue); }
+    .s-C::before { color: var(--red); }
+    .s-R::before { color: var(--green); }
+    .s-q::before { color: var(--muted); }
     .num { color: var(--muted); }
     .skeleton td { color: var(--muted); font-style: italic; }
   </style>
@@ -158,7 +155,7 @@
         <tr>
           <td class="repo mono"><a href="${repoUrl(a.repo)}">${escape(a.repo)}</a></td>
           <td class="num"><a href="${issueUrl(a.repo, a.number)}">#${a.number}</a></td>
-          <td><span class="s s-${g}" title="${escape(a.state || "open")}">${g === "q" ? "?" : g}</span></td>
+          <td><span class="s s-${g}" title="${escape(a.state || "open")}"></span></td>
           <td><span class="pri pri-${a.priority}">${a.priority}</span></td>
           <td class="note">${escape(a.note || "")}</td>
         </tr>`;
