@@ -1,5 +1,7 @@
 # Private — never commit
 bunker/
+AGENTS.md
+CLAUDE.md
 
 # Local scratch
 .DS_Store
