@@ -128,7 +128,7 @@
   <script>
   (async () => {
     const TTL = 5 * 60 * 1000;
-    const KEY = "dist-cache:v1:";
+    const KEY = "dist-cache:v2:";
 
     const escape = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
     const repoUrl = (r) => "https://github.com/" + r;
@@ -145,7 +145,9 @@
     const liveGlyph = (live) => {
       if (!live) return "q";
       if (live.state === "open") return "O";
-      if (live.state === "closed") return "C";
+      if (live.state === "closed") {
+        return live.state_reason === "completed" ? "R" : "C";
+      }
       return "q";
     };
 
@@ -199,7 +201,7 @@
           <td class="repo mono"><a href="${repoUrl(a.repo)}">${escape(a.repo)}</a></td>
           <td><span class="pri pri-${a.priority}">${a.priority}</span></td>
           <td><span class="s s-${askG}" title="ask: ${escape(a.state || "open")}"></span></td>
-          <td><span class="s s-${liveG}" title="issue: ${escape(live?.state || "unknown")}"></span></td>
+          <td><span class="s s-${liveG}" title="issue: ${escape(live?.state || "unknown")}${live?.state_reason ? " (" + escape(live.state_reason) + ")" : ""}"></span></td>
           <td class="note">${escape(a.note || "")}</td>
           <td class="num"><a href="${issueUrl(a.repo, a.number)}">#${a.number}</a></td>
         </tr>`;
