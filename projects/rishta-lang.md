@@ -24,17 +24,13 @@ Either arc could carry the project on its own. Together they make it the most **
 
 ## Naming: resolved
 
-Originally shipped as `bhai-lang`, which collided with the well-known Hindi-keyword joke language (`bhai-lang`, about 14k stars on GitHub). The collision was a search-engine and discovery problem: search results, awesome-list mentions, and casual references all defaulted to the more famous project.
+Originally shipped as `bhai-lang`, which collided with the well-known Hindi-keyword joke language (`DulLabs/bhai-lang`, about 14k stars on GitHub). The collision was a search-engine and discovery problem.
 
-**Resolution.** The repo has been renamed to `rishta-lang`. The `rishta-` framing foregrounds the novel contribution (the رشتہ primitive runtime) rather than the language-with-Urdu-keywords surface, and it disambiguates cleanly from the joke language without competing against it.
+**Resolution.** The repo has been renamed to `rishta-lang`. The README front-matter now leads with `# رشتہ Rishta`, the body uses Rishta as the public name, and a footnote disambiguates from the original project. The `rishta-` framing foregrounds the novel contribution (the رشتہ primitive runtime) rather than the language-with-Urdu-keywords surface, and it disambiguates cleanly from the joke language without competing against it.
 
 **Trade-off accepted.** The cultural identity (`بھائی-lang`, Karachi-Urdu vocabulary) is no longer in the project name. It still lives in the source code, the keyword set, and the README's voice. Distribution copy can lean on the cultural register where it matters (the cultural-arc essay, talks, Urdu-language community outreach) without the project name carrying it.
 
-**Downstream cleanup tracked**
-- PyPI package name (when published): use `rishta` or `rishta-lang`.
-- Console-script entry points: `rishta` for the `rishta.py` runtime, `bhai` retained for the conventional interpreter.
-- Awesome-list submissions: use `rishta-lang` everywhere.
-- Cross-references in this distribution repo: handled in commit that lands this dossier.
+**No downstream to align.** No PyPI publication yet, no console-scripts shipped, no awesome-list entries, no external mentions. Future artifacts use `rishta-lang` and `rishta` from the start. There is nothing to clean up because nothing has been published under the old name.
 
 ## Audience
 
@@ -49,7 +45,8 @@ Originally shipped as `bhai-lang`, which collided with the well-known Hindi-keyw
 ## Distribution state: what's done
 
 - ✅ Repo renamed to `rishta-lang`. Naming-collision blocker resolved.
-- ✅ Repo description updated on GitHub. Now reads as a Karachi-native programming language for cryptographically verifiable data lineage.
+- ✅ Repo description updated on GitHub. Reads as a Karachi-native programming language for cryptographically verifiable data lineage.
+- ✅ README front-matter leads with `# رشتہ Rishta`. Disambiguation footnote points to `DulLabs/bhai-lang` so search-engine confusion does not compound.
 - ✅ Thorough README: keywords table, operators, built-ins (organized by stdlib module), example programs, value model, propagation rules, primitives table, persistence, cryptographic testimony.
 - ✅ `examples/` directory with named example programs (factorial, hello, rishta_leak, rishta_gdpr, rishta_modules, rishta_save, rishta_load, rishta_proof, rishta_typed, stdlib_demo).
 - ✅ Roadmap published with version history.
@@ -57,8 +54,7 @@ Originally shipped as `bhai-lang`, which collided with the well-known Hindi-keyw
 
 ## Distribution state: gaps
 
-- ❌ **License TBD.** Hard blocker. Recommended: **Apache-2.0** (patent grant matters for cryptographic and lineage work, downstream embedders need clarity). Tracked as issue [#2](https://github.com/adiled/rishta-lang/issues/2).
-- ❌ **README front-matter still says `بھائی-lang`** as the title. Update to lead with `rishta-lang` (or `rishta`), with `بھائی-lang` retained as the legacy or cultural identifier where it serves the prose.
+- ❌ **License TBD.** Hard blocker. Recommended: **Apache-2.0** (the runtime is intended to be embedded per the v0.10 roadmap entry). Tracked as issue [#1](https://github.com/adiled/rishta-lang/issues/1).
 - ❌ Not on PyPI. The technical audience expects `pip install rishta` (or similar) as a credible install path.
 - ❌ No published JSON schema for the persisted lineage graph. The README mentions "auditors can inspect it without بھائی installed." Publishing a documented schema turns that claim into something a non-user can engage with.
 - ❌ No CLI binary entry point. `python3 rishta.py file.bhai` is fine for early users. `rishta file.bhai` via a console-script is what an installer expects.
@@ -68,8 +64,8 @@ Originally shipped as `bhai-lang`, which collided with the well-known Hindi-keyw
 ## Plan: pre-launch (in this order)
 
 **Phase 0: Resolve the remaining blocker (week 1):**
-1. **Choose the license.** Recommendation: Apache-2.0. (Issue [#2](https://github.com/adiled/rishta-lang/issues/2).)
-2. **Add `LICENSE` file. Update README front-matter** to lead with `rishta-lang` as the project name.
+1. **Choose the license.** Recommendation: Apache-2.0. Tracked as issue [#1](https://github.com/adiled/rishta-lang/issues/1).
+2. **Add `LICENSE` file** at the repo root.
 
 **Phase 1: Distill (weeks 2 to 5):**
 

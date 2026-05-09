@@ -88,7 +88,8 @@
       "repo": "adiled/rishta-lang",
       "number": 2,
       "priority": "P0",
-      "note": "Naming collision resolved by renaming bhai-lang to rishta-lang. Issue tracks downstream cleanup (PyPI name, console-scripts, README front-matter, awesome-list entries)."
+      "note": "Closed. Rename to rishta-lang is applied at the GitHub level and in the README front-matter (title now رشتہ Rishta with a disambiguation footnote). No downstream exists yet (no PyPI, no console-scripts shipped, no awesome-list entries). Future artifacts use the new name from the start.",
+      "state": "closed-resolved"
     },
     {
       "repo": "adiled/iksir",
