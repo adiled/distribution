@@ -49,7 +49,7 @@
       "repo": "adiled/orchd",
       "tier": "T3",
       "dossier": "projects/orch.md",
-      "note": "Pre-launch. Execution engine for the Orch spec. Linux-only until launchd platform lands."
+      "note": "Pre-launch. Rust execution engine that compiles Orchfiles to native systemd units and runs the lifecycle (up, down, status, logs, health, clean), with auto-generated ready gates derived from healthcheck-shaped dependencies and a clean Runtime/Platform separation (bare runtime and systemd platform shipping today; containerd, podman, apple, launchd named in docs but not implemented). Linux-only in practice. crates.io name `orchd` available; publish is blocked on `orch` publishing first because `Cargo.toml` carries a git dependency on adiled/orch."
     },
     {
       "repo": "adiled/clwnd-playground",
